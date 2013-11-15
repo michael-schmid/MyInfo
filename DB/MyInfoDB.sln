@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database1", "Database1\Database1.sqlproj", "{C08BC913-DFD5-4B02-A254-5E532B033B16}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MyInfoDB", "MyInfoDB\MyInfoDB.sqlproj", "{C08BC913-DFD5-4B02-A254-5E532B033B16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
