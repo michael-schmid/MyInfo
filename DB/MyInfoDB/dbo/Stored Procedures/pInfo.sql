@@ -1,10 +1,6 @@
 ﻿
 /*	-------------------------------------------------------------------------------------------------------------------------------------
-
 	Maintain Information
-
-
-	
 
 	insert into tblInfo(text,  Pos) 
 	values ('dddd',  0x)
@@ -31,7 +27,6 @@
 				exec @id = 	dbo.pInfo @mode='add', @text='How To ', @parentID=15
 				exec @id = 	dbo.pInfo @mode='add', @text='How To ', @parentID=15
 					exec dbo.pInfo @mode='add', @text='How To ', @parentID=@id
-
 
 	--	get all informations
 		exec dbo.pInfo @mode='list'

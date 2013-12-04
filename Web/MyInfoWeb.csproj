@@ -116,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\nhinbernateStart.cs" />
+    <Compile Include="Controller\ObjectController.cs" />
     <Compile Include="Controller\InfoController.cs" />
     <Compile Include="Controller\CoursCollection.cs" />
     <Compile Include="Global.asax.cs">

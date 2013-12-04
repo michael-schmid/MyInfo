@@ -74,6 +74,8 @@
     <Build Include="dbo\Tables\tblInfo.sql" />
     <None Include="dbo\Tables\sql_Hierarchy.sql" />
     <None Include="dbo\Tables\xml_node.sql" />
+    <Build Include="dbo\Stored Procedures\pItem.sql" />
+    <Build Include="dbo\Tables\tblItem.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Database1.refactorlog" />
@@ -86,5 +88,6 @@
     <None Include="webDB2013_localDB.publish.xml" />
     <None Include="smarterAsp.publish.xml" />
     <None Include="SqlKnow\sql_Hierarchy.sql" />
+    <None Include="main.sql" />
   </ItemGroup>
 </Project>
