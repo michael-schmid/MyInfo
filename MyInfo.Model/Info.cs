@@ -24,7 +24,9 @@ namespace MyInfo.Model
         public int ID { get; set; }
         public string parentID { get; set; }
         public string Text { get; set; }
-        public DateTime iDate { get; set; }
+        public string Topic { get; set; }
+        public string Tags { get; set; }
+        public string iDate { get; set; }
         public DateTime cDate { get; set; }
         public List<MyInfo.DTO.InfoDTO> InfoList { get; set; }
 
@@ -36,6 +38,8 @@ namespace MyInfo.Model
             // create new object and send to server
             InfoDTO td = new InfoDTO();
             td.Text = this.Text;
+            td.Tags = this.Tags;
+            td.Topic = this.Topic;
             td.parentID = this.parentID;
             IInfoRepository infoRepository = new InfoRepositorySqlServer();
             infoRepository.Add(td);

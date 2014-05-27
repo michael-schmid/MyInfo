@@ -57,7 +57,7 @@ namespace MyInfo.DAL
             }
 
             // Sql: exec dbo.pInfo @mode='add', @text='Tasks', @parentID=6
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["localProject"].ConnectionString))
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[ConfigurationManager.AppSettings["connection"]].ConnectionString))
             {
                 conn.Open();
 
@@ -66,6 +66,8 @@ namespace MyInfo.DAL
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@parentID", item.parentID));
                     cmd.Parameters.Add( new SqlParameter("@text", item.Text));
+                    cmd.Parameters.Add(new SqlParameter("@Topic", item.Topic));
+                    cmd.Parameters.Add(new SqlParameter("@Tags", item.Tags));
                     cmd.Parameters.Add(new SqlParameter("@mode", "add"));
                     cmd.ExecuteNonQuery();
                 }

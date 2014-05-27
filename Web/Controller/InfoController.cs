@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using MyWebApi.Models;
 using MyInfo.Model;
+using System.Web.Http.Cors;
 
 namespace MyWebApi
 {
@@ -15,6 +16,7 @@ namespace MyWebApi
         static List<MyInfo.Model.Info> tasks = new List<MyInfo.Model.Info>();
              
         // PUT 
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public void Post([FromBody] MyInfo.Model.Info info)
         {
             // t.id = tasks.Count;
@@ -32,6 +34,7 @@ namespace MyWebApi
 
         // GET api/<controller>/5
         // can either be name or id
+        [EnableCors(origins: "*", headers: "*", methods: "*")]
         public Info Get(string id)
         {
             Info i = new Info(id);

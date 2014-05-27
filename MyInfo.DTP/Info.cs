@@ -11,7 +11,9 @@ namespace MyInfo.DTO
         public int ID { get; set; }
         public string parentID { get; set; }
         public string Text { get; set; }
-        public DateTime iDate { get; set; }
+        public string Topic { get; set; }
+        public string Tags { get; set; }
+        public string iDate { get; set; }
         public DateTime cDate { get; set; }
     }
 }

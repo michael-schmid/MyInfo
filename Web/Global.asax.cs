@@ -7,11 +7,8 @@ using System.Web.SessionState;
 using System.Web.Routing;
 using System.Web.Http;
 using System.Web.Http.Routing;
+using System.Web.Http.Cors;
 
-//using NHibernate.Cfg;
-//using NHibernate.Dialect;
-//using NHibernate.Driver;
-//using System.Reflection;
 
 namespace MyWebApi
 {
@@ -19,6 +16,8 @@ namespace MyWebApi
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            GlobalConfiguration.Configuration.EnableCors();
+
             // easy route template to get rsessources by the controller name : /controller
             GlobalConfiguration.Configuration.Routes.Add("default", new HttpRoute("{controller}"));
 

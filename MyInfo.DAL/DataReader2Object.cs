@@ -34,7 +34,8 @@ namespace MyInfo.DAL
 
                         if ((info != null) && info.CanWrite)
                         {
-                            info.SetValue(newObject, dr.GetValue(index), null);
+                            if (!dr.IsDBNull(index))
+                                info.SetValue(newObject, dr.GetValue(index), null);
                         }
                     }
                     entitys.Add(newObject);
