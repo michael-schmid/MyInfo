@@ -64,6 +64,8 @@
     <Folder Include="Snapshots" />
     <Folder Include="dbo\Stored Procedures" />
     <Folder Include="SqlKnow" />
+    <Folder Include="SqlKnow\Hierachy" />
+    <Folder Include="SqlKnow\AnalyticalFunctions" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\test.sql" />
@@ -76,18 +78,31 @@
     <None Include="dbo\Tables\xml_node.sql" />
     <Build Include="dbo\Stored Procedures\pItem.sql" />
     <Build Include="dbo\Tables\tblItem.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <RefactorLog Include="Database1.refactorlog" />
+    <None Include="_info_.sql" />
+    <PostDeploy Include="Script.PostDeployment1.sql" />
+    <Build Include="dbo\Tables\tblInfoH.sql" />
+    <Build Include="dbo\Stored Procedures\pInfoUpdate.sql" />
+    <Build Include="dbo\Stored Procedures\pInfoGetLevel.sql" />
+    <None Include="SqlKnow\Hierachy\createNodes.sql" />
+    <None Include="SqlKnow\Hierachy\movingNodes.sql" />
+    <None Include="SqlKnow\Hierachy\querying.sql" />
+    <None Include="SqlKnow\Hierachy\xmlToHierarchy.sql" />
+    <None Include="SqlKnow\AnalyticalFunctions\RowNumber.sql" />
+    <None Include="addXML_Snapshot.sql" />
+    <Build Include="convertToHierarchy.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Snapshots\Database1_20130413_11-19-53.dacpac" />
-    <None Include="Database1.publish.xml" />
     <None Include="smarterAsp.net.xml" />
     <None Include="LocalDB_webdb2013.xml" />
     <None Include="webDB2013_localDB.publish.xml" />
     <None Include="smarterAsp.publish.xml" />
-    <None Include="SqlKnow\sql_Hierarchy.sql" />
     <None Include="main.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Script.PreDeployment1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="MyInfoDB.refactorlog" />
   </ItemGroup>
 </Project>
