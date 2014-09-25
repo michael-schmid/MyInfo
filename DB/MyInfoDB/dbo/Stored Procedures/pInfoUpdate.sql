@@ -7,7 +7,9 @@
 		Call		exec dbo.pInfoUpdate  @mode='add', @text='Tasks', @parentID=6
 
 					--	add a root item
-						exec dbo.pInfoUpdate  @text='NewRoot'
+						declare @id int;
+						exec  @id = dbo.pInfoUpdate  @text='NewRoot';
+						print cast(@id as varchar(20));
 
 						--	add child to the root
 							exec dbo.pInfoUpdate  @text='NewRoot', @parentID = 20
@@ -19,8 +21,7 @@
 create procedure [dbo].[pInfoUpdate]
 	@id				int = null				,
 	@Text			varchar(1000) = null	,
-	@parentiD		int = null				,
-	@createdID		int = null output
+	@parentiD		int = null				
 as
 set nocount on
 
@@ -33,7 +34,14 @@ set nocount on
 				insert into dbo.tblInfoH (
 					hid, text
 				)
-				values	(HIERARCHYID::GetRoot(), @Text );
+				values	(
+					hierarchyid::GetRoot().GetDescendant(
+						(	select MAX(hid) 
+							from	dbo.tblInfoH
+							where	hid.GetAncestor(1) = hierarchyid::GetRoot()),
+						NULL)	,
+						@Text );
+
 			end
 		else
 			begin

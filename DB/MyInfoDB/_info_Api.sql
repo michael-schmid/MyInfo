@@ -1,35 +1,27 @@
-﻿/*
+﻿/*	-------------------------------------------------------------------------------------------
 
-		Information Storage
+	Information Storage DB API
 
-
-**/
-
-
-	select * from tblInfo order by idate desc
-	select * from tblItem 
+	------------------------------------------------------------------------------------------	**/
 
 
-	--	Data API
-		
-		--	get all
-			exec dbo.pInfo  @mode='list'
-
-		--	set information
-			exec dbo.pInfo @mode='add', @text='Tasks', @parentID=6
+	--	get all information
+		select *, hid.ToString()
+		from	dbo.tblInfoH
 
 
-	-- Hierarchical
-		
-		exec dbo.pInfoGetLevel 
+	--	get a particular level
+		exec dbo.pInfoGetLevel		-- Root
 		exec dbo.pInfoGetLevel  1
 
 
-		--	add root level
-			exec dbo.pInfoUpdate  @mode='add', @text='Tasks'
+	--	get direct descendants 
+		exec dbo.pInfoGetAncestors @text = 'Ancestor0', @level=1
 
 
-			select * from tblInfoH order by idate desc
+	--	add information
+		exec dbo.pInfoUpdate  @mode='add', @text='Tasks'
+		select * from tblInfoH order by idate desc
 
 			/*
 

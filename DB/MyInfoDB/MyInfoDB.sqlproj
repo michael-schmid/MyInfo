@@ -66,6 +66,7 @@
     <Folder Include="SqlKnow" />
     <Folder Include="SqlKnow\Hierachy" />
     <Folder Include="SqlKnow\AnalyticalFunctions" />
+    <Folder Include="StructuredInformationStorage" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\test.sql" />
@@ -78,7 +79,7 @@
     <None Include="dbo\Tables\xml_node.sql" />
     <Build Include="dbo\Stored Procedures\pItem.sql" />
     <Build Include="dbo\Tables\tblItem.sql" />
-    <None Include="_info_.sql" />
+    <None Include="_info_Api.sql" />
     <PostDeploy Include="Script.PostDeployment1.sql" />
     <Build Include="dbo\Tables\tblInfoH.sql" />
     <Build Include="dbo\Stored Procedures\pInfoUpdate.sql" />
@@ -90,6 +91,14 @@
     <None Include="SqlKnow\AnalyticalFunctions\RowNumber.sql" />
     <None Include="addXML_Snapshot.sql" />
     <Build Include="convertToHierarchy.sql" />
+    <None Include="SqlKnow\Hierachy\_info_.sql" />
+    <None Include="SqlKnow\Hierachy\qryLevels.sql" />
+    <None Include="SqlKnow\Hierachy\qryChildCounts.sql" />
+    <None Include="SqlKnow\Hierachy\qryChilds.sql" />
+    <Build Include="dbo\Stored Procedures\pInfoGetAncestors.sql" />
+    <Build Include="StructuredInformationStorage\pInfoAdd.sql" />
+    <Build Include="StructuredInformationStorage\tblI.sql" />
+    <None Include="StructuredInformationStorage\pInfoTest.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Snapshots\Database1_20130413_11-19-53.dacpac" />
@@ -98,6 +107,7 @@
     <None Include="webDB2013_localDB.publish.xml" />
     <None Include="smarterAsp.publish.xml" />
     <None Include="main.sql" />
+    <None Include="SqlKnow\Hierachy\multipleRoots.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="Script.PreDeployment1.sql" />

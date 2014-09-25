@@ -1,6 +1,12 @@
 ﻿
 /*	-------------------------------------------------------------------------------------------------------------------------------------
-	Maintain Information
+	
+	Purpose			Adds Information in tblI
+
+	Call			exec dbo.pInfoAdd @Name = 'Name', @key='Key', @Value='Value, @url='Url';
+
+	Testing		
+
 
 	insert into tblInfo(text,  Pos) 
 	values ('dddd',  0x)
