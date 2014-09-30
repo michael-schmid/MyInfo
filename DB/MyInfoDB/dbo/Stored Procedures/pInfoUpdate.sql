@@ -18,7 +18,7 @@
 
 		--------------------------------------------------------------------------------------------------------------------------------------*/
 
-create procedure [dbo].[pInfoUpdate]
+create procedure [dbo].[pInfoUpdatee]
 	@id				int = null				,
 	@Text			varchar(1000) = null	,
 	@parentiD		int = null				

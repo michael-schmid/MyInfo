@@ -8,9 +8,10 @@ namespace MyInfo.DAL
 {
     public interface IInfoRepository
     {
-        List<InfoDTO> Infos(string InfoID);
+        List<InfoDTO> Infos(int InfoID);
         InfoDTO Get(string Name);
         int Add(InfoDTO item);
+        void Delete(int Id);
         bool Update(InfoDTO item);
     }
 }

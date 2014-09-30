@@ -19,22 +19,25 @@ namespace MyInfo.DAL
         public InfoRepositorySqlServer()
         { 
         }
-        // return all tasks
-        public List<InfoDTO> Infos(string ID)
+        // return list of information
+        public List<InfoDTO> Infos(int ID)
         {
-            // Sql: exec dbo.pInfo @mode='list'
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[ConfigurationManager.AppSettings["connection"]].ConnectionString))
             {
                 conn.Open();
 
-                var parameter = (ID == "root" ? DBNull.Value.ToString() : ID);
+                Object infoID;
+                if (ID == -1)
+                    infoID = DBNull.Value;
+                else
+                    infoID = ID;
 
-                using (SqlCommand cmd = new SqlCommand("pInfo", conn))
+                using (SqlCommand cmd = new SqlCommand("pInfoGet", conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-             
-                    cmd.Parameters.Add(new SqlParameter("@mode", "list"));
-                    cmd.Parameters.Add(new SqlParameter("@id", parameter));
+                    
+                    cmd.Parameters.Add(new SqlParameter("@id", infoID));
+                    cmd.Parameters.Add(new SqlParameter("@parentId", infoID));
                     SqlDataReader dr =  cmd.ExecuteReader();
 
                     List<InfoDTO> infoList = DataReader2Object.GetList<InfoDTO>(dr);
@@ -43,50 +46,90 @@ namespace MyInfo.DAL
             }
         }
    
-
         public InfoDTO Get(string Name)
         {
             // not yet implemented
             return null; // tasks.Find(t => t.Name == Name);
         }
+
+        // delete an information from storage
+        public void Delete(int Id)
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[ConfigurationManager.AppSettings["connection"]].ConnectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("dbo.pInfoDelete", conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Id", Id));
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Add a new information
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public int Add(MyInfo.DTO.InfoDTO item)
         {
             if (item == null)
             {
-                throw new ArgumentException("item");
+                throw new ArgumentException("item missing");
             }
 
-            // Sql: exec dbo.pInfo @mode='add', @text='Tasks', @parentID=6
+            // new 29.09.2014: storing hierarchical information : returns the id of the newly created information node
+            // dbo.pInfoAdd	 @name='test', @key='key', @Value='Value', @Url='Url', @parentId=1
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[ConfigurationManager.AppSettings["connection"]].ConnectionString))
             {
                 conn.Open();
 
-                using (SqlCommand cmd = new SqlCommand("pInfo", conn))
+                using (SqlCommand cmd = new SqlCommand("dbo.pInfoAdd", conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@parentID", item.parentID));
-                    cmd.Parameters.Add( new SqlParameter("@text", item.Text));
-                    cmd.Parameters.Add(new SqlParameter("@Topic", item.Topic));
-                    cmd.Parameters.Add(new SqlParameter("@Tags", item.Tags));
-                    cmd.Parameters.Add(new SqlParameter("@mode", "add"));
+                    cmd.Parameters.Add(new SqlParameter("@parentID", item.parentId));
+                    cmd.Parameters.Add( new SqlParameter("@Name", item.Name));
+                    cmd.Parameters.Add(new SqlParameter("@Key", item.Key));
+                    cmd.Parameters.Add(new SqlParameter("@Value", item.Value));
+                    cmd.Parameters.Add(new SqlParameter("@Url", item.Url));
+
+                    // output parameter for stored procedure value which returns the created informaiton id
+                    SqlParameter returnParam = new SqlParameter("CreateReturnValue", SqlDbType.Int);
+                    returnParam.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(returnParam);
+
+                    cmd.ExecuteNonQuery();
+                    return (int)returnParam.Value;
+                }
+            }
+        }
+       /// <summary>
+       /// Update an existing information
+       /// </summary>
+       /// <param name="item"></param>
+       /// <returns></returns>
+        public bool Update(InfoDTO item)
+        {
+            if (item == null)
+            {
+                throw new ArgumentException("item missing");
+            }
+            // dbo.pInfoUpdate	@id=1, @name='test', @key='key', @Value='Value', @Url='Url'
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[ConfigurationManager.AppSettings["connection"]].ConnectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("dbo.pInfoUpdate", conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Id", item.Id));
+                    cmd.Parameters.Add(new SqlParameter("@Name", item.Name));
+                    cmd.Parameters.Add(new SqlParameter("@Key", item.Key));
+                    cmd.Parameters.Add(new SqlParameter("@Value", item.Value));
+                    cmd.Parameters.Add(new SqlParameter("@Url", item.Url));
                     cmd.ExecuteNonQuery();
                 }
             }
-            return 0;
-        }
-        public void Remove(string Name)
-        {
-           // tasks.RemoveAll(t => t.Name == Name);
-        }
-        public bool Update(InfoDTO item)
-        {
-            // note yet implemented
-            if (item == null)
-            {
-                throw new ArgumentException("item");
-            }
-            //int index = tasks.FindIndex(t => t.Name == item.Name);
-            //tasks.RemoveAt(index);
             return true;
         }
     }

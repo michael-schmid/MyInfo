@@ -8,11 +8,12 @@ namespace MyInfo.DTO
 {
     public class InfoDTO
     {
-        public int ID { get; set; }
-        public string parentID { get; set; }
-        public string Text { get; set; }
-        public string Topic { get; set; }
-        public string Tags { get; set; }
+        public int Id { get; set; }
+        public string parentId { get; set; }
+        public string Name { get; set; }
+        public string Key { get; set; }
+        public string Value { get; set; }
+        public string Url { get; set; }
         public string iDate { get; set; }
         public DateTime cDate { get; set; }
     }

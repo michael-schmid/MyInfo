@@ -99,6 +99,11 @@
     <Build Include="StructuredInformationStorage\pInfoAdd.sql" />
     <Build Include="StructuredInformationStorage\tblI.sql" />
     <None Include="StructuredInformationStorage\pInfoTest.sql" />
+    <Build Include="StructuredInformationStorage\pInfoGet.sql" />
+    <Build Include="StructuredInformationStorage\typeInfo.sql" />
+    <Build Include="StructuredInformationStorage\pInfoDelete.sql" />
+    <None Include="StructuredInformationStorage\_info_.sql" />
+    <Build Include="StructuredInformationStorage\pInfoUpdate.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Snapshots\Database1_20130413_11-19-53.dacpac" />

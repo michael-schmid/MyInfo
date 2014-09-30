@@ -8,41 +8,70 @@ using MyInfo.DAL;
 
 namespace MyInfo.Model
 {
-    public class Info
+    public class Info 
     {
-        public Info(string ID)
+        public Info() { }
+        public Info(int Id)
         {
-            // InfoList = new List<Info>();
-
+            List<InfoDTO> InfoList = new List<InfoDTO>();
             IInfoRepository infoRepository = new InfoRepositorySqlServer();
-            InfoList = infoRepository.Infos(ID);
+            InfoList = infoRepository.Infos(Id);
+
+            InfoDTO i = InfoList[0];
+            this.Name = i.Name;
+            this.Key = i.Key;
+            this.Value = i.Value;
+            this.Url = i.Url;
+            this.iDate = i.iDate;
+            this.Id = Id;
         }
-        public Info()
-        {
-            InfoList = new List<InfoDTO>();
-        }
-        public int ID { get; set; }
-        public string parentID { get; set; }
-        public string Text { get; set; }
-        public string Topic { get; set; }
-        public string Tags { get; set; }
+        //public Info()
+        //{
+        //   // InfoList = new List<InfoDTO>();
+        //}
+        public int Id { get; set; }
+        public string parentId { get; set; }
+        public string Name { get; set; }
+        public string Key { get; set; }
+        public string Value { get; set; }
+        public string Url { get; set; }
         public string iDate { get; set; }
         public DateTime cDate { get; set; }
-        public List<MyInfo.DTO.InfoDTO> InfoList { get; set; }
+        // public List<MyInfo.DTO.InfoDTO> InfoList { get; set; }
 
         /// <summary>
         /// Persist the new task in the repository
         /// </summary>
-        public void Save()
+        public int Save()
         {
-            // create new object and send to server
+            // create new object and send to the repository
             InfoDTO td = new InfoDTO();
-            td.Text = this.Text;
-            td.Tags = this.Tags;
-            td.Topic = this.Topic;
-            td.parentID = this.parentID;
+            td.Name = this.Name;
+            td.Key = this.Key;
+            td.Value = this.Value;
+            td.parentId = this.parentId;
             IInfoRepository infoRepository = new InfoRepositorySqlServer();
-            infoRepository.Add(td);
+            
+            
+            if ( this.Id == 0)
+                // add the item in the repository and return the provided generated information id
+                return infoRepository.Add(td);
+            else
+            { 
+                // Id exist: update existing item
+                td.Id = this.Id;
+                infoRepository.Update(td);
+                return 0;
+            }
+
         }
+
+        public void Delete()
+        {
+            IInfoRepository infoRepository = new InfoRepositorySqlServer();
+            infoRepository.Delete(this.Id);
+        }
+
+
     }
 }
