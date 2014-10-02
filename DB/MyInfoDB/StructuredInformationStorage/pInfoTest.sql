@@ -6,6 +6,9 @@
 		select * from dbo.tblI
 		--------------------------------------------------------------------------------------------------------------- */
 			
+	create procedure dbo.pInfo_Test
+	as
+
 	set nocount on;
 	print 'Start Testing Info API';
 	print '------------------------------------------------------';

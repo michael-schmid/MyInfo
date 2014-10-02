@@ -98,7 +98,7 @@
     <Build Include="dbo\Stored Procedures\pInfoGetAncestors.sql" />
     <Build Include="StructuredInformationStorage\pInfoAdd.sql" />
     <Build Include="StructuredInformationStorage\tblI.sql" />
-    <None Include="StructuredInformationStorage\pInfoTest.sql" />
+    <Build Include="StructuredInformationStorage\pInfoTest.sql" />
     <Build Include="StructuredInformationStorage\pInfoGet.sql" />
     <Build Include="StructuredInformationStorage\typeInfo.sql" />
     <Build Include="StructuredInformationStorage\pInfoDelete.sql" />
