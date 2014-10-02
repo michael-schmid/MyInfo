@@ -27,8 +27,11 @@ set nocount on
 
 
 	select	top 50		
-			id							,			
+			id							,
+			hid.ToString()		Hierarchy	,
+			null				Path		,	-- to be implemented : node/node/node
 			Level						,
+			replicate('     ', hid.GetLevel()) + Name as VisualPath  ,
 			Name						,
 			[Key]						,
 			Value						,
