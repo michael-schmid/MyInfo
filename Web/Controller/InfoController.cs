@@ -31,7 +31,7 @@ namespace MyWebApi
             if (id == null)
             {
                 Infos infos = new Infos();
-                return infos.InfoList(-1);
+                return infos.InfoList(0);
             }
             else
             {

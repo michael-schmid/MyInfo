@@ -27,7 +27,7 @@ namespace MyInfo.DAL
                 conn.Open();
 
                 Object infoID;
-                if (ID == -1)
+                if (ID == 0)
                     infoID = DBNull.Value;
                 else
                     infoID = ID;

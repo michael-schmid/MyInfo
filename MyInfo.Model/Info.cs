@@ -30,8 +30,8 @@ namespace MyInfo.Model
         //   // InfoList = new List<InfoDTO>();
         //}
         public int Id { get; set; }
-        public string parentId { get; set; }
         public string Name { get; set; }
+        public int Level { get; set; }
         public string Key { get; set; }
         public string Value { get; set; }
         public string Url { get; set; }
@@ -49,7 +49,6 @@ namespace MyInfo.Model
             td.Name = this.Name;
             td.Key = this.Key;
             td.Value = this.Value;
-            td.parentId = this.parentId;
             IInfoRepository infoRepository = new InfoRepositorySqlServer();
             
             

@@ -32,3 +32,10 @@
 			http://msdn.microsoft.com/en-us/library/bb677207(v=sql.105).aspx
 
 
+			select * into tblInfoHSave from tblInfoH
+			truncate table tblInfoH
+
+			dbo.pInfo_DemoData
+
+
+			pInfoGet

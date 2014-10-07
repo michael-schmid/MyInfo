@@ -9,6 +9,10 @@
 				Get descentants from an item:
 					exec dbo.pInfoGet @parentId = 7;
 
+					
+					exec dbo.pInfoGet @parentId = null;
+
+
 				Get List 
 					exec dbo.pInfoGet
 
@@ -40,7 +44,7 @@ set nocount on
 	from	tbli
 	where	(id = @id
 		or	@id is null)	
-	order	by idate desc
+	order	by hid 
 
 
 	
