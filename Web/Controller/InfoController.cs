@@ -39,7 +39,6 @@ namespace MyWebApi
                 return new Info(Convert.ToInt32(id));
             }
         }
-      
        
         // PUT 
         [EnableCors(origins: "*", headers: "*", methods: "*")]
@@ -52,6 +51,7 @@ namespace MyWebApi
         }
 
         // DELETE api/<controller>/5
+         [EnableCors(origins: "*", headers: "*", methods: "*")]
         public void Delete(int id)
         {
             Info i = new Info(id);
