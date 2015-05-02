@@ -36,6 +36,9 @@ set nocount on
 							
 			select	* 
 			from	dbo.tblI
+			order	by 
+					idate desc
+
 			where	name = 'testChild1'
 
 			if @levelChild1 = 1

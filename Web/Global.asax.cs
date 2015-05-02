@@ -22,10 +22,16 @@ namespace MyWebApi
             GlobalConfiguration.Configuration.Routes.Add("default", new HttpRoute("{controller}"));
 
             // route which allows for submitting parameters
+            //routes.MapHttpRoute(
+            //    name: "DefaultApi",
+            //    routeTemplate: "api/{controller}/{id}",
+            //    defaults: new { id = RouteParameter.Optional }
+            //);
+
             routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                name: "WithViewDef",
+                routeTemplate: "api/{controller}/{id}/{view}",
+                defaults: new { id = RouteParameter.Optional, view = RouteParameter.Optional }
             );
 
             // nhibernate configuration does not work

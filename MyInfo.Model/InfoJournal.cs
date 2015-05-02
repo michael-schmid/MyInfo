@@ -11,14 +11,15 @@ namespace MyInfo.Model
     /// <summary>
     /// Return list of information
     /// </summary>
-    public class Infos
+    public class InfoJournal
     {
-        public Infos() { }
-        public List<InfoDTO> InfoList(int Id)
+        public InfoJournal() { }
+
+        public List<InfoDTO> InfoList()
         {
             List<InfoDTO> InfoList = new List<InfoDTO>();
             IInfoRepository infoRepository = new InfoRepositorySqlServer();
-            return infoRepository.Infos(Id);
+            return infoRepository.InfoJournal();
         }
     }
 }

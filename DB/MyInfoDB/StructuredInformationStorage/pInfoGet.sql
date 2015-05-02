@@ -13,8 +13,13 @@
 					exec dbo.pInfoGet @parentId = null;
 
 
+
 				Get List 
 					exec dbo.pInfoGet
+
+				Get Journal
+					exec dbo.pInfoGet @view='list'
+
 
 	select * from tblI
 	--------------------------------------------------------------------------------------------------------------------------------------*/
@@ -52,6 +57,7 @@ set nocount on
 
 	-- return a plain list of information (sorted iDate desc)
 	-- to display the journal of added information
+
 	if @view = 'list'
 		begin
 			

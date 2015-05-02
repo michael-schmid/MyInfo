@@ -24,22 +24,40 @@ namespace MyWebApi
 
         // GET api/<controller>/5
         // can either be name or id
+        //[EnableCors(origins: "*", headers: "*", methods: "*")]
+        //public Object Get(string id = null)
+        //{
+           
+        //}
+
+
+        // GET api/info/5/journal
+        // get a particular view on a object
         [EnableCors(origins: "*", headers: "*", methods: "*")]
-        public Object Get(string id = null)
+        public Object Get(string id = null, string view = null)
         {
+          
             // get list of information when no id is given
-            if (id == null)
+            if (view == "journal")
             {
-                Infos infos = new Infos();
-                return infos.InfoList(0);
+                InfoJournal infos = new InfoJournal();
+                return infos.InfoList();
             }
             else
-            {
-                // retrieve single information by its id
-                return new Info(Convert.ToInt32(id));
-            }
+                // get list of information when no id is given
+                if (id == null)
+                {
+                    Infos infos = new Infos();
+                    return infos.InfoList(0);
+                }
+                else
+                {
+                    // retrieve single information by its id
+                    return new Info(Convert.ToInt32(id));
+                }
         }
-       
+
+
         // PUT 
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         public void Put(string id, [FromBody] MyInfo.Model.Info info)

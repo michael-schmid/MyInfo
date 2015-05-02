@@ -19,6 +19,24 @@ namespace MyInfo.DAL
         public InfoRepositorySqlServer()
         { 
         }
+
+        // return info journal
+        public List<InfoDTO> InfoJournal()
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[ConfigurationManager.AppSettings["connection"]].ConnectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("pInfoGet", conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@view", "list"));
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    List<InfoDTO> infoList = DataReader2Object.GetList<InfoDTO>(dr);
+                    return infoList;
+                }
+            }
+        }
+
         // return list of information
         public List<InfoDTO> Infos(int ID)
         {
