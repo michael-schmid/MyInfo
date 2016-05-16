@@ -53,7 +53,11 @@ namespace MyWebApi
                 else
                 {
                     // retrieve single information by its id
-                    return new Info(Convert.ToInt32(id));
+                    // return new Info(Convert.ToInt32(id));
+
+					Infos infos = new Infos();
+					return infos.InfoList(Convert.ToInt32(id));
+
                 }
         }
 

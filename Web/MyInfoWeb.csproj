@@ -82,14 +82,68 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSS\mocha.css" />
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\SmarterASP.pubxml" />
-    <Content Include="task.html" />
+    <None Include="scripts\amplify-vsdoc.js" />
+    <Content Include="index.html" />
+    <Content Include="scripts\amplify.js" />
+    <Content Include="scripts\amplify.min.js" />
+    <Content Include="scripts\amplify\amplify.core.js" />
+    <Content Include="scripts\amplify\amplify.core.min.js" />
+    <Content Include="scripts\amplify\amplify.request.js" />
+    <Content Include="scripts\amplify\amplify.request.min.js" />
+    <Content Include="scripts\amplify\amplify.store.js" />
+    <Content Include="scripts\amplify\amplify.store.min.js" />
+    <Content Include="scripts\expect.js" />
+    <Content Include="scripts\GPL-LICENSE.txt" />
+    <Content Include="scripts\infoStoreApp.js" />
+    <Content Include="scripts\Info\info.js" />
+    <Content Include="scripts\Info\infoConfig.js" />
+    <Content Include="scripts\Info\infoData.js" />
+    <Content Include="scripts\Info\infoForm.js" />
+    <Content Include="scripts\Info\infoMockData.js" />
+    <Content Include="scripts\Info\infoStore - Copy.js" />
+    <Content Include="scripts\Info\infoStore.js" />
+    <Content Include="scripts\Info\router.js" />
+    <Content Include="scripts\Info\src\utils.js" />
+    <Content Include="scripts\Info\test\hack.js" />
+    <Content Include="scripts\Info\test\hack1.js" />
+    <Content Include="scripts\Info\test\infoStore-test.js" />
+    <Content Include="scripts\Info\test\infoStoreWebService-test.js" />
+    <Content Include="scripts\Info\views\viewInfoGrid.js" />
+    <Content Include="scripts\Info\views\viewHistory.js" />
+    <Content Include="scripts\Info\views\viewInfoEdit.js" />
+    <Content Include="scripts\Info\views\viewInfoList.js" />
+    <Content Include="scripts\Info\views\viewInfoTable.js" />
+    <Content Include="scripts\lib\jquery-1.9.1.js" />
+    <Content Include="scripts\lib\Bootstrap\css\bootstrap-theme.css" />
+    <Content Include="scripts\lib\Bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="scripts\lib\Bootstrap\css\bootstrap.css" />
+    <Content Include="scripts\lib\Bootstrap\css\bootstrap.min.css" />
+    <Content Include="scripts\lib\Bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="scripts\lib\Bootstrap\js\bootstrap.js" />
+    <Content Include="scripts\lib\Bootstrap\js\bootstrap.min.js" />
+    <Content Include="scripts\lib\jsrender.min.js" />
+    <Content Include="scripts\lib\Masonry\jquery.masonry.js" />
+    <Content Include="scripts\lib\Masonry\jquery.masonry.min.js" />
+    <Content Include="scripts\main.js" />
+    <Content Include="scripts\MIT-LICENSE.txt" />
+    <Content Include="scripts\mocha.js" />
+    <Content Include="scripts\r.js" />
+    <Content Include="scripts\README.txt" />
+    <Content Include="scripts\require.js" />
+    <Content Include="scripts\sammy-0.7.5.js" />
+    <Content Include="scripts\sammy-0.7.5.min.js" />
+    <Content Include="scripts\sinon-1.9.1.js" />
+    <Content Include="test\index.html" />
+    <Content Include="test\testDataService.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\InfoHistoryController.cs" />
     <Compile Include="Controller\ObjectController.cs" />
     <Compile Include="Controller\InfoController.cs" />
     <Compile Include="Controller\CoursCollection.cs" />
@@ -106,6 +160,9 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\SmarterASP Api.pubxml" />
+    <Content Include="scripts\lib\Bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="scripts\lib\Bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="scripts\lib\Bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -114,6 +171,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MyInfo.DAL\MyInfo.DAL.csproj">
+      <Project>{7ff1e6e1-5875-4f5d-a4e7-dbe94dda63ed}</Project>
+      <Name>MyInfo.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MyInfo.DTP\MyInfo.DTO.csproj">
       <Project>{3e386041-3463-4818-b648-8d1bd82978b3}</Project>
       <Name>MyInfo.DTO</Name>

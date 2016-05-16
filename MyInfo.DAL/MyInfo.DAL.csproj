@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataReader2Object.cs" />
+    <Compile Include="IInfoHistoryRepository.cs" />
     <Compile Include="IInfoRepository.cs" />
+    <Compile Include="InfoHistoryRepositorySqlserver.cs" />
     <Compile Include="InfoRepositorySqlServer.cs" />
     <Compile Include="ITaskRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

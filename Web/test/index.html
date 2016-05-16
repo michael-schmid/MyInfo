@@ -1,0 +1,48 @@
+﻿
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>info Unit Tests</title>
+    <link rel="stylesheet" href="/css/mocha.css" />
+</head>
+<body>
+
+
+    <!--    -----------------------------------------------------------------------------------
+
+            Unit Test Runner
+
+            ---------------------------------------------------------------------------------->
+
+    <div id="mocha"></div>
+    <script src="/scripts/require.js"></script>
+    <script src="/scripts/expect.js"></script>
+    <script src="/scripts/mocha.js"></script>
+
+
+
+    
+
+    <script>
+        mocha.setup({ ui: "bdd", globals: ['jquery*'] });
+        </script>
+
+    <script>
+        // once loaded this file set the base url to the path
+        // where all other modules are located
+        require.config({
+            baseUrl: "/scripts/Info"
+        });
+
+        // frist load require module paths
+        require(['/scripts/main.js'], function ($) {
+            require(["../scripts/Info/test/infoStore-test.js"], function () {
+                //ipt src="../scripts/Info/test/infoStore-test.js"
+                mocha.run();
+            });
+        });
+
+    </script>
+</body>
+</html>

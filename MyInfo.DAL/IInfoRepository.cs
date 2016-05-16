@@ -6,13 +6,8 @@ using MyInfo.DTO;
 
 namespace MyInfo.DAL
 {
-    public interface IInfoRepository
+    public interface IInfoHistoryRepository
     {
-        List<InfoDTO> Infos(int InfoID);
-        List<InfoDTO> InfoJournal();
-        InfoDTO Get(string Name);
-        int Add(InfoDTO item);
-        void Delete(int Id);
-        bool Update(InfoDTO item);
+        List<InfoDTO> InfoHistory();
     }
 }

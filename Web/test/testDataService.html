@@ -1,0 +1,42 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>info service Unit Tests</title>
+    <link rel="stylesheet" href="/css/mocha.css" />
+</head>
+<body>
+    <!--    ----------------------------------------------------------------------------------- 
+        
+            Mocha Unit Test Runner 
+        
+     ---------------------------------------------------------------------------------->
+
+    <div id="mocha"></div>
+    <script src="/scripts/require.js"></script>
+    <script src="/scripts/expect.js"></script>
+    <script src="/scripts/mocha.js"></script>
+      
+    <script>
+        mocha.setup({ ui: "bdd", bail:false });
+        
+        // loaction where all Information modules are located
+        require.config({
+            baseUrl: "/scripts/Info"
+        });
+
+        require(['infoConfig'], function (iConfig) {
+            
+            // prod
+            iConfig.serviceURL_test = "http://infoapi.domemory.net/api";
+
+            require(['/scripts/main.js'], function ($) {
+                // load and run tests
+                require(['/scripts/info/test/infoStoreWebService-test.js'], function (iConfig) {
+                    mocha.run();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -50,12 +50,12 @@ namespace MyInfo.DAL
                 else
                     infoID = ID;
 
-                using (SqlCommand cmd = new SqlCommand("pInfoGet", conn))
+                using (SqlCommand cmd = new SqlCommand("pInfoo", conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     
                     cmd.Parameters.Add(new SqlParameter("@id", infoID));
-                    cmd.Parameters.Add(new SqlParameter("@parentId", infoID));
+                    // cmd.Parameters.Add(new SqlParameter("@parentId", infoID));
                     SqlDataReader dr =  cmd.ExecuteReader();
 
                     List<InfoDTO> infoList = DataReader2Object.GetList<InfoDTO>(dr);
