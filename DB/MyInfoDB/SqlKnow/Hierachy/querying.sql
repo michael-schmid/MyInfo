@@ -9,6 +9,9 @@
 	
 						Moving Nodes and Subnodes 
 						http://sqlblogcasts.com/blogs/simons/archive/2008/03/31/SQL-Server-2008---HierarchyId---How-do-you-move-nodes-subtrees-around.aspx
+
+
+
 	--------------------------------------------------------------------------------------------------------------------------------------------------------- */
 
 	create table #tblInfo
@@ -50,9 +53,9 @@
 
 		--	all subsequent nodes from a node
 			select	*
-			from	#tblInfo	p
-			 join	#tblInfo	c
-			   on	p.Id = 2
+			from	tblI	p
+			   join	tblI	c
+			   on	p.Id = 89
 			   and  c.hid.IsDescendantOf(p.hid) = 1
 
 
@@ -61,3 +64,7 @@
 					REPLICATE('     ', hid.GetLevel()) + text as Text
 			from	#tblInfo
 			order	by hid;
+
+
+		-- 
+			

@@ -60,8 +60,11 @@ set nocount on
 
 	if @view = 'list'
 		begin
+
 			
-			select	top 50		
+
+
+			select	-- topp 50		
 					id							,
 					hid.ToString()		Hierarchy	,
 					null				Path		,	-- to be implemented : node/node/node
@@ -76,5 +79,5 @@ set nocount on
 			order	by iDate Desc
 		end
 
-
+	
 	

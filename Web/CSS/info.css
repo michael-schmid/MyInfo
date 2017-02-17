@@ -1,0 +1,27 @@
+﻿@charset "utf-8";
+
+
+
+.infoDl  dl
+{
+	
+}
+
+
+
+.infoDl dt, dt.infoItem 
+{
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	margin-top: 30px;
+	margin-bottom:3px;
+	
+	font-weight:bold;
+	font-size:18px;
+}
+
+
+.infoDl  dd, , dd.infoItem 
+{
+	width:100%;
+	margin: 0 0 1em 0;
+}

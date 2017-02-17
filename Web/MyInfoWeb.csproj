@@ -82,6 +82,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSS\info.css" />
     <Content Include="CSS\mocha.css" />
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\SmarterASP.pubxml" />
@@ -111,6 +112,7 @@
     <Content Include="scripts\Info\test\hack1.js" />
     <Content Include="scripts\Info\test\infoStore-test.js" />
     <Content Include="scripts\Info\test\infoStoreWebService-test.js" />
+    <Content Include="scripts\Info\views\viewHome.js" />
     <Content Include="scripts\Info\views\viewInfoGrid.js" />
     <Content Include="scripts\Info\views\viewHistory.js" />
     <Content Include="scripts\Info\views\viewInfoEdit.js" />

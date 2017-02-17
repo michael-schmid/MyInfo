@@ -66,7 +66,9 @@
     <Folder Include="SqlKnow" />
     <Folder Include="SqlKnow\Hierachy" />
     <Folder Include="SqlKnow\AnalyticalFunctions" />
-    <Folder Include="StructuredInformationStorage" />
+    <Folder Include="info.domemory.com" />
+    <Folder Include="info.domemory.com\Procedures" />
+    <Folder Include="info.domemory.com\Tables" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\test.sql" />
@@ -96,15 +98,19 @@
     <None Include="SqlKnow\Hierachy\qryChildCounts.sql" />
     <None Include="SqlKnow\Hierachy\qryChilds.sql" />
     <Build Include="dbo\Stored Procedures\pInfoGetAncestors.sql" />
-    <Build Include="StructuredInformationStorage\pInfoAdd.sql" />
-    <Build Include="StructuredInformationStorage\tblI.sql" />
-    <Build Include="StructuredInformationStorage\pInfoTest.sql" />
-    <Build Include="StructuredInformationStorage\pInfoGet.sql" />
-    <Build Include="StructuredInformationStorage\typeInfo.sql" />
-    <Build Include="StructuredInformationStorage\pInfoDelete.sql" />
-    <None Include="StructuredInformationStorage\_info_.sql" />
-    <Build Include="StructuredInformationStorage\pInfoUpdate.sql" />
-    <Build Include="StructuredInformationStorage\pInfoDemoData.sql" />
+    <None Include="info.domemory.com\_info_.sql" />
+    <Build Include="info.domemory.com\Tables\tblI.sql" />
+    <Build Include="info.domemory.com\Procedures\pInfoAdd.sql" />
+    <Build Include="info.domemory.com\Procedures\pInfoDelete.sql" />
+    <Build Include="info.domemory.com\Procedures\pInfoDemoData.sql" />
+    <Build Include="info.domemory.com\Procedures\pInfoGet.sql" />
+    <Build Include="info.domemory.com\Procedures\pInfoItems.sql" />
+    <Build Include="info.domemory.com\Procedures\pInfoTest.sql" />
+    <Build Include="info.domemory.com\Tables\typeInfo.sql" />
+    <Build Include="info.domemory.com\Procedures\pInfoUpdate.sql" />
+    <None Include="info.domemory.com\_info_getInfoHistory.sql" />
+    <Build Include="info.domemory.com\Procedures\pInfoHistory.sql" />
+    <Build Include="info.domemory.com\Procedures\pInfo.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Snapshots\Database1_20130413_11-19-53.dacpac" />

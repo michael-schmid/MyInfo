@@ -65,13 +65,13 @@ define(['jquery', 'infoData', 'infoStore', 'jsrender', 'amplify'], function ($, 
             editTemplate: '<div>\
                             <form role="form" class="form-horizontal">\
                                 <div class="row">\
-                                    <div class="col-xs-8">\
+                                    <div class="col-md-8">\
                                         <div class="form-group">\
                                             <label for="inpName">Name</label><br />\
                                             <input type="text" value="{{:Name}}" class="form-control" id="inpName" placeholder="Name">\
                                         </div>\
                                     </div>\
-                                    <div class="col-xs-4">\
+                                    <div class="col-md-4">\
                                         <div class="form-group">\
                                             <div id="InfoId">{{:Id}}</div>\
                                             <label for="inpParentID">ParentID</label><br />\
@@ -80,42 +80,42 @@ define(['jquery', 'infoData', 'infoStore', 'jsrender', 'amplify'], function ($, 
                                     </div>\
                                 </div>\
                                 <div class="row">\
-                                    <div class="col-xs-4">\
+                                    <div class="col-md-4">\
                                         <div class="form-group">\
                                                 <label for="inpKey">Key</label><br />\
                                                 <input type="text" value="{{:Key}}" class="form-control" id="inpKey" placeholder="Key">\
                                         </div>\
                                     </div>\
-                                    <div class="col-xs-7 col-md-offset-1">\
+                                    <div class="col-md-7 col-md-offset-1">\
                                         <div class="form-group">\
                                             <label for="inpValue">Value</label>\
                                             <input type="text" value="{{:Value}}" class="form-control" id="inpValue" placeholder="Value">\
                                         </div>\
                                     </div>\
-                                </div>\
-                                <div class="row">\
-                                    <div class="col-xs-4">\
-                                        <div class="form-group">\
-                                            <label>Action</label><br />\
-                                            <button id="saveInfo" class="btn btn-default">Save</button>\
-                                            <button id="deleteInfo" class="btn btn-default">Delete</button>\
-                                            <button id="newInfo" class="btn btn-default">New</button>\
-                                        </div>\
-                                    </div>\
-                                    <div class="col-xs-7 col-md-offset-1">\
-                                        <div class="form-group">\
-                                             <label for="inpUrl">Url</label><br />\
-                                            <input type="text" value="{{:Url}}" class="form-control" id="inpUrl" placeholder="Url">\
-                                        </div>\
-                                    </div>\
-                               </div>\
-                            </form>\
-                            </div>'
+								</div>\
+								<div class="row">\
+									<div class="col-md-4">\
+										<div class="form-group">\
+											<label>Action</label><br />\
+											<button id="saveInfo" class="btn btn-default">Save</button>\
+											<button id="deleteInfo" class="btn btn-default">Delete</button>\
+											<button id="newInfo" class="btn btn-default">New</button>\
+										</div>\
+									</div>\
+									<div class="col-md-7 col-md-offset-1">\
+										<div class="form-group">\
+												<label for="inpUrl">Url</label><br />\
+											<input type="text" value="{{:Url}}" class="form-control" id="inpUrl" placeholder="Url">\
+										</div>\
+									</div>\
+								</div>\
+							</form>\
+						</div>'
                     
         });
 
         // add the form to the element
-        var $editForm = $('<div><dl>' + $.render.editTemplate(infoDetail) + ' </dl></div>');
+        var $editForm = $($.render.editTemplate(infoDetail));
         $element.empty().append($editForm);
 
 

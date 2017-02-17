@@ -37,11 +37,13 @@
 		('/3/1/', 'McMurdo Station')
 
 
-				select	c.*
-				from	#tblInfo	c
-				 join	#tblInfo	p
-				   on	p.Text = 'South America'
-				where	c.hid.IsDescendantOf(p.hid)	= 1
+		--	query all childs from an node
+			select	c.*
+			from	#tblInfo	c
+				join	#tblInfo	p
+				on	p.Text = 'South America'
+			where	c.hid.IsDescendantOf(p.hid)	= 1
+
 
 		-- find all child of South America		
 			--	first level

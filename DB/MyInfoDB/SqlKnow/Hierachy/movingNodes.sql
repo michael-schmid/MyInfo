@@ -8,44 +8,47 @@ Moving Nodes and Subnodes
 
 */
 
-DECLARE @xml XML
-
-SET @xml = '
-<Root>
-    <Info Name="Sql Server">
-		 <Info Name="XML Support" />
-		 <Info Name="Output clause" />
-		 <Info Name="Output clause" />
-        <Info Name="How To">
-            <Info Name="Move HirarchyID" />
-        </Info>
-        <Info Name="Rowset Constructor">
-			<Info Name="insert into table(id, name) values (''id1'', ''id2'')" />
-			<Info Name="Process multiple in one transaction" />
-		</Info>
-    </Info>
-</Root>';
+--	get hid from direct ancestor
+	select *, hid.GetAncestor(1) from tbli order by idate desc
 
 
-	WITH CTE_ITEMS ([HId], [Infos], [Name], [Path]) 
-AS 
-( 
-    SELECT  
-        hierarchyid::GetRoot() as [HId], 
-        VIRT.node.query('./*') as [Infos], 
-        VIRT.node.value('@Name', 'nvarchar(500)') as [Name], 
-        CAST('/' as nvarchar(max)) as [Path] 
-        FROM @xml.nodes('/Root/*') as VIRT(node) 
-    UNION ALL 
-    SELECT  
-        hierarchyid::Parse([HId].ToString() + VIRT.node.value('1+count(for $a in . return $a/../*[. << $a])', 'varchar(10)') + '/'), 
-        VIRT.node.query('./*'),  
-        VIRT.node.value('@Name', 'nvarchar(500)'), 
-        [Path] +  
-            CASE [Path] WHEN '/' THEN '' ELSE + '/' END +  
-            VIRT.node.value('@Name', 'nvarchar(max)') 
-    FROM  
-    CTE_ITEMS CROSS APPLY Infos.nodes('./*') as VIRT(node) 
-) 
-SELECT [HId].ToString(),[Name],[Path],[HId].GetLevel() FROM CTE_ITEMS 
-ORDER BY [HId] 
+
+--	reparent a node
+	DECLARE @EmployeeToMove hierarchyid
+	DECLARE @OldParent hierarchyid
+	DECLARE @NewParent hierarchyid
+
+	SELECT	@EmployeeToMove = hid	,
+			@oldParent = hid.GetAncestor(1)
+	FROM	tblI
+	where   id = 88				
+		
+	select	@NewParent = hid
+	from	tblI
+	where	id = 89		-- jqplot
+
+	
+	update	tblI
+	set		hid = @EmployeeToMove.GetReparentedValue(@OldParent, @NewParent)
+	where	hid = @EmployeeToMove
+	
+	
+
+--	reparent a subtree
+
+	--DECLARE @OldParent hierarchyid
+	--DECLARE @NewParent hierarchyid
+
+	--SELECT @OldParent = hid
+	--FROM	tblI
+	--WHERE	EmployeeId =  -- Amy
+
+	--SELECT @NewParent = NodeId
+	--FROM Employee
+	--WHERE EmployeeId = 89 -- Kevin
+
+	--UPDATE tblI
+	--set		hid = hid.GetReparentedValue(null, @NewParent)
+	--WHERE NodeId.IsDescendantOf(@OldParent) = 1
+	--AND EmployeeId <> 46 -- This excludes Amy from the move.
+	
