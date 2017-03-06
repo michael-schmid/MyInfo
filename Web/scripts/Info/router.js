@@ -4,15 +4,16 @@
         Routing Start
 */
 
-require(['/scripts/main.js'], function () {
-	require(['sammy'], function (Sammy) {
+
+require(['main'], function () {
+	require(['jquery', 'sammy'], function ($, Sammy) {
 		// initialize the application
-		var app = Sammy('#main', function () {
+		var app = Sammy(function () {
 
 			// define a 'route'
 			this.get('#/', function () {
 				require(['viewHome'], function (view) {
-					view.display($('#main'));
+					view.display($('#mainDisplay').empty());
 				});
 			});
 
@@ -20,7 +21,7 @@ require(['/scripts/main.js'], function () {
 				require(['viewInfoTable', 'infoData'], function (view, infoData) {
 					infoData.journal().done(function (data) {
 						console.log(JSON.stringify(data));
-						view.display($('#main'), data);
+						view.display($('#mainDisplay').empty(), data);
 					});
 				});
 			});
@@ -39,7 +40,7 @@ require(['/scripts/main.js'], function () {
 
 					infoData.journal().done(function (data) {
 						// alert(JSON.stringify(data));
-						view.display($('#main'), data);
+						view.display($('#mainDisplay').empty(), data);
 					});
 
 				});
@@ -53,7 +54,7 @@ require(['/scripts/main.js'], function () {
 
 				require(['view' + id], function (view) {
 
-					view.display($('#main'));
+					view.display($('#mainDisplay').empty());
 
 				});
 			});
@@ -61,13 +62,13 @@ require(['/scripts/main.js'], function () {
 
 			this.get('/#/history', function () {
 				require(['/scripts/info/views/viewHistory.js'], function (view) {
-					view.display($('#main'));
+					view.display($('#mainDisplay').empty());
 				});
 			});
 
 			this.get('#/edit', function () {
 				require(['viewInfoEdit'], function (editView) {
-					editView.display($('#main'));
+					editView.display($('#mainDisplay').empty());
 				});
 			});
 
@@ -77,18 +78,23 @@ require(['/scripts/main.js'], function () {
 
 					infoData.list().done(function (data) {
 						console.log(JSON.stringify(data));
-						view.display($('#main'), data);
-						// view.display($('#main'), { Id: "testId", Name: "testName", Key: "testKey", Value: "testValue" });
+						view.display($('#mainDisplay').empty(), data);
+						// view.display($('#mainDisplay'), { Id: "testId", Name: "testName", Key: "testKey", Value: "testValue" });
 					});
 				});
 			});
 		});
-		// start the application
-		app.run('#/');
+
+
+		$(document).ready(
+            function () {
+                // start the application
+                app.run('#/');
+            })
 	});
 });
 
-
+	
 
 
 

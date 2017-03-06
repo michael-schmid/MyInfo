@@ -60,11 +60,7 @@ set nocount on
 
 	if @view = 'list'
 		begin
-
-			
-
-
-			select	-- topp 50		
+			select	top 50		
 					id							,
 					hid.ToString()		Hierarchy	,
 					null				Path		,	-- to be implemented : node/node/node

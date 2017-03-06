@@ -22,6 +22,7 @@ requirejs.config({
 		'viewInfoEdit': ['/scripts/info/views/viewInfoEdit'],
 		'viewInfoTable': ['/scripts/info/views/viewInfoTable'],
 		'viewInfoList': ['/scripts/info/views/viewInfoList'],
+		'viewInfoProgress': ['/scripts/info/views/viewInfoProgress'],
 		'viewHistory': ['/scripts/info/views/viewHistory'],
 		'viewHome': ['/scripts/info/views/viewHome'],
 		'viewInfoGrid': ['/scripts/info/views/viewInfoTable']

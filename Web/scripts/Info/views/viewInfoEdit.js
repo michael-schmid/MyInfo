@@ -23,6 +23,8 @@ define(['jquery', 'infoData', 'infoStore', 'jsrender', 'amplify'], function ($, 
         $('#inpKey').val(info.Key);
         $('#inpValue').val(info.Value); 
         $('#inpUrl').val(info.Url);
+        $('#infoId').val(info.Id);
+        $('#inpName').val(info.Name);
     };
 
     var display = function ($element, infoDetail, parentId) {
@@ -36,88 +38,77 @@ define(['jquery', 'infoData', 'infoStore', 'jsrender', 'amplify'], function ($, 
             var infoDetail = { ParentId: parentId, Key: "", Value: "", Url: "", Name: "Name" };
 
 
-        /*
-
-        <!--<form role="form" class="form-inline">
-                    <div class="form-group">
-                        <label class="sr-only" for="inpParentID">ParentID</label>
-                        <input type="text" class="form-control" id="inpParentID" placeholder="ParentID">
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="inpTopic">Topic</label>
-                        <input type="text" class="form-control" id="inpTopic" placeholder="Topic">
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="inpTags">Caption</label>
-                        <input type="text" class="form-control" id="inpTags" placeholder="Tag">
-                    </div>
-                    <button id="saveInfo" class="btn btn-default">Save</button>
-                </form>
-
-                <div class="form-group">
-                    <label class="sr-only" for="inpText">Text</label>
-                    <textarea class="form-control" id="inpText" placeholder="Text"></textarea>
-                </div>-->
-            */
-
         // compile needed templates
         $.templates({
             editTemplate: '<div>\
                             <form role="form" class="form-horizontal">\
                                 <div class="row">\
-                                    <div class="col-md-8">\
-                                        <div class="form-group">\
-                                            <label for="inpName">Name</label><br />\
-                                            <input type="text" value="{{:Name}}" class="form-control" id="inpName" placeholder="Name">\
-                                        </div>\
-                                    </div>\
-                                    <div class="col-md-4">\
-                                        <div class="form-group">\
-                                            <div id="InfoId">{{:Id}}</div>\
-                                            <label for="inpParentID">ParentID</label><br />\
-                                            <input type="text" value="{{:ParentId}}" class="form-control" id="inpParentID" placeholder="ParentID">\
-                                        </div>\
-                                    </div>\
-                                </div>\
-                                <div class="row">\
-                                    <div class="col-md-4">\
-                                        <div class="form-group">\
-                                                <label for="inpKey">Key</label><br />\
-                                                <input type="text" value="{{:Key}}" class="form-control" id="inpKey" placeholder="Key">\
-                                        </div>\
-                                    </div>\
-                                    <div class="col-md-7 col-md-offset-1">\
-                                        <div class="form-group">\
-                                            <label for="inpValue">Value</label>\
-                                            <input type="text" value="{{:Value}}" class="form-control" id="inpValue" placeholder="Value">\
-                                        </div>\
-                                    </div>\
-								</div>\
-								<div class="row">\
+                                    <div class="col-md-6">\
+                                        <label for="inpKey">Key</label><br />\
+										<input type="text" value="{{:Id}}" class="form-control" id="infoId" placeholder="Key">\
+										<div class="row">\
+											<div class="col-md-10">\
+												<div class="form-group">\
+													<label for="inpName">Name</label><br />\
+													<textarea type="text" value="{{:Name}}" class="form-control" id="inpName" placeholder="Name"></textarea>\
+												</div>\
+											</div>\
+										</div>\
+										<div class="row">\
+										<div class="col-md-6">\
+												<div class="form-group">\
+													<label for="inpKey">Key</label><br />\
+													<input type="text" value="{{:Key}}" class="form-control" id="inpKey" placeholder="Key">\
+												</div>\
+											</div>\
+											<div class="col-md-4">\
+												<div class="form-group">\
+													<label>Action</label><br />\
+													<button id="saveInfo" class="btn btn-default">Save</button>\
+													<button id="deleteInfo" class="btn btn-default">Delete</button>\
+													<button id="newInfo" class="btn btn-default">New</button>\
+												</div>\
+											</div>\
+										</div>\
+									</div>\
 									<div class="col-md-4">\
-										<div class="form-group">\
-											<label>Action</label><br />\
-											<button id="saveInfo" class="btn btn-default">Save</button>\
-											<button id="deleteInfo" class="btn btn-default">Delete</button>\
-											<button id="newInfo" class="btn btn-default">New</button>\
+										<div class="row">\
+											<div class="col-md-7 col-md-offset-1">\
+												<div class="form-group">\
+													<label for="inpValue">Value</label>\
+													<input type="text" value="{{:Value}}" class="form-control" id="inpValue" placeholder="Value">\
+												</div>\
+											</div>\
+										</div>\
+										<div class="row">\
+											<div class="col-md-7 col-md-offset-1">\
+												<div class="form-group">\
+														<div id="InfoId">{{:Id}}</div>\
+													<label for="inpParentID">ParentID</label><br />\
+													<input type="text" value="{{:ParentId}}" class="form-control" id="inpParentID" placeholder="ParentID">\
+												</div>\
+											</div>\
+										</div>\
+										<div class="row">\
+											<div class="col-md-7 col-md-offset-1">\
+												<div class="form-group">\
+														<label for="inpUrl">Url</label><br />\
+													<input type="text" value="{{:Url}}" class="form-control" id="inpUrl" placeholder="Url">\
+												</div>\
 										</div>\
 									</div>\
-									<div class="col-md-7 col-md-offset-1">\
-										<div class="form-group">\
-												<label for="inpUrl">Url</label><br />\
-											<input type="text" value="{{:Url}}" class="form-control" id="inpUrl" placeholder="Url">\
-										</div>\
-									</div>\
-								</div>\
+                                    </div>\
+                              </div>\
 							</form>\
 						</div>'
-                    
         });
 
         // add the form to the element
         var $editForm = $($.render.editTemplate(infoDetail));
         $element.empty().append($editForm);
 
+
+        
 
         // save event triggers save action
         $editForm.find('#saveInfo').on('click', function (e) {
@@ -126,30 +117,44 @@ define(['jquery', 'infoData', 'infoStore', 'jsrender', 'amplify'], function ($, 
             // create a new object0
             info = {};
 
+            info.Id = $('#infoId').val();
             info.ParentID = $('#inpParentID').val()
             info.Name = $('#inpName').val();
             info.Key = $('#inpKey').val();
             info.Value = $('#inpValue').val();
             info.Url = $('#inpUrl').val();
+            info.Saved = undefined;
 
-            // save new information
-            iStore.create($('#InfoId').text(), info);
+            amplify.publish('info.save', info); 
         });
 
         // delete an information
         $editForm.find('#deleteInfo').on('click', function (e) {
             e.preventDefault();
 
-            var infoID = $('#InfoId').text();
-                        amplify.publish("info.delete", infoID);
+            var infoId = $('#infoId').val();
+
+            $.when(iData.delete(infoId))
+                .then(function (data) {
+                    console.log('infoEdit: receive info.delete event: ' + infoId);
+
+                    amplify.publish("info.deleted", infoId);
+
+                })
+                .fail(function () {
+                    alert('Delete Info failed: ' + infoId);
+                });
+
+                
         });
         
         amplify.subscribe("info.select", function (infoId) {
             $.when(iData.data(infoId))
             .then(function (data) {
 
+                console.log('infoEdit: receive info.select event: ' + infoId);
                 // alert(JSON.stringify(data));
-                refreshData(data);
+                refreshData(data[0]);
             });
         });
 

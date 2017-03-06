@@ -18,9 +18,9 @@ define(['jquery', 'infoData', 'jsrender', 'amplify'], function ($, iData) {
     	// compile needed templates
     	$.templates({
     		itemTemplateDL: '    <tr id={{:Id}} class="info" id={{:parentId}}>\
-									<td>{{:iDate}}</td>\
+									<td>{{:iDate}} {{:Id}}</td>\
 									<td><div>{{:Name}}</div>\
-										<div>{{:Key}} {{:Value}} {{:Url}} <d/iv></td>\
+										<div>{{:Key}} {{:Id}} {{:Value}} {{:Url}} <d/iv></td>\
 								</tr>'
     	});
 

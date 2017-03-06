@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -88,6 +89,7 @@
     <None Include="Properties\PublishProfiles\SmarterASP.pubxml" />
     <None Include="scripts\amplify-vsdoc.js" />
     <Content Include="index.html" />
+    <Content Include="packery.html" />
     <Content Include="scripts\amplify.js" />
     <Content Include="scripts\amplify.min.js" />
     <Content Include="scripts\amplify\amplify.core.js" />
@@ -112,6 +114,7 @@
     <Content Include="scripts\Info\test\hack1.js" />
     <Content Include="scripts\Info\test\infoStore-test.js" />
     <Content Include="scripts\Info\test\infoStoreWebService-test.js" />
+    <Content Include="scripts\Info\views\viewInfoProgress.js" />
     <Content Include="scripts\Info\views\viewHome.js" />
     <Content Include="scripts\Info\views\viewInfoGrid.js" />
     <Content Include="scripts\Info\views\viewHistory.js" />
@@ -127,9 +130,10 @@
     <Content Include="scripts\lib\Bootstrap\js\bootstrap.js" />
     <Content Include="scripts\lib\Bootstrap\js\bootstrap.min.js" />
     <Content Include="scripts\lib\jsrender.min.js" />
+    <Content Include="scripts\lib\lib\packery.pkgd.min.js" />
     <Content Include="scripts\lib\Masonry\jquery.masonry.js" />
     <Content Include="scripts\lib\Masonry\jquery.masonry.min.js" />
-    <Content Include="scripts\main.js" />
+    <Content Include="scripts\Info\main.js" />
     <Content Include="scripts\MIT-LICENSE.txt" />
     <Content Include="scripts\mocha.js" />
     <Content Include="scripts\r.js" />
