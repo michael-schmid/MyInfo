@@ -6,7 +6,8 @@
 
 
 require(['main'], function () {
-	require(['jquery', 'sammy'], function ($, Sammy) {
+    require(['jquery'], function ($, Sammy) {
+        require(['sammy', 'bootstrap'], function (Sammy) {
 		// initialize the application
 		var app = Sammy(function () {
 
@@ -52,7 +53,7 @@ require(['main'], function () {
 
 				var id = this.params["id"];
 
-				require(['view' + id], function (view) {
+				require(['/scripts/info/views/view' + id + '.js'], function (view) {
 
 					view.display($('#mainDisplay').empty());
 
@@ -72,6 +73,13 @@ require(['main'], function () {
 				});
 			});
 
+            // Change or enter a new done information 
+			this.get('#/done', function () {
+			    require(['viewInfoEditDone'], function (editView) {
+			        editView.display($('#mainDisplay').empty());
+			    });
+			});
+
 			// define a 'route'
 			this.get('#/hierarchy', function () {
 				require(['viewInfoList', 'infoData'], function (view, infoData) {
@@ -84,14 +92,15 @@ require(['main'], function () {
 				});
 			});
 		});
-
+        
 
 		$(document).ready(
             function () {
                 // start the application
                 app.run('#/');
             })
-	});
+        });
+    });
 });
 
 	

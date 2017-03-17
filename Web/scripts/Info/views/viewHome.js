@@ -1,12 +1,13 @@
 ﻿/*  ------------------------------------------------------------------------------------------------------------------------
         Visualize Inforamtion Data
 
-        Purpose     Dispaly Landing page for manageing informations
+        Purpose     Tile UI for the Root Page
 
         Input       JSON Data
         
         Output      Templated HTML Markup
 
+        Url         /#/view/Home                -- does not work in the mobile browser
   
     --------------------------------------------------------------------------------------------------------------------- **/
 
@@ -15,24 +16,53 @@ define(['jquery', 'viewInfoEdit', 'jsrender', 'amplify'  ], function ($, editVie
     // display a list of information
 	var display = function ($element) {
 
-		console.log('### Display viewHowme');
-
+		console.log('### Display viewHowmeGrid');
 		
     	var markup = '<div class="row">\
-						<div class="col-md-10">\
-							<div id="infoEdit"></div>\
-						</div>\
-					</div>\
-					<div class="row">\
-						<div class="col-md-4" >\
-							<h2>Information Progress Local</h2>\
-							<div id="infoProgress"></div>\
-						</div>\
-						<div class="col-md-6 col-md-offset-1" >\
-							<h2>Information History</h2>\
-							<div id="infoHistory"></div>\
-						</div>\
-					<div/>';
+                          <div class="col-md-5 col-md-offset-2">\
+                            <div class="card">\
+                              <div class="card-block">\
+                                <h3 class="card-title">Log</h3>\
+                                <div id="infoHistory"></div>\
+                              </div>\
+                            </div>\
+                            </div>\
+                           <div class="col-md-3">\
+                            <div class="card">\
+                              <div class="card-block">\
+                                <h3 class="card-title">New</h3>\
+                                <div id="infoEdit"></div>\
+                              </div>\
+                            </div>\
+                                <div class="card">\
+                              <div class="card-block">\
+                                <h3 class="card-title">Days</h3>\
+                              </div>\
+                            </div>\
+                            <div class="card">\
+                              <div class="card-block">\
+                                <h3 class="card-title">Search</h3>\
+                              </div>\
+                            </div>\
+                                <div class="card">\
+                                    <div class="card-block">\
+                                        <h3 class="card-title">Stat</h3>\
+                                    </div>\
+                                </div>\
+                                <div class="card">\
+                                    <div class="card-block">\
+                                        <h3 class="card-title">Stat</h3>\
+                                    </div>\
+                                </div>\
+                          </div>\
+                        </div>\
+					<div/>\
+                    <div class="row">\
+                          <div class="col-md-6">\
+                          </div>\
+                        </div>\
+					<div/>\
+    	        ';
 
 		$element.append(markup)
 
