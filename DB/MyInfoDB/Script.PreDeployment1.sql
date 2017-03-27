@@ -11,12 +11,12 @@
 */
 
 --	save information
-	if not exists (select * from sys.objects where name = 'tblInfoSave')
-	begin
-		select	* 
-		into	tblInfoSave
-		from	tblInfo
+	--if not exists (select * from sys.objects where name = 'tblInfoSave')
+	--begin
+	--	select	* 
+	--	into	tblInfoSave
+	--	from	tblInfo
 
-		truncate table tblInfo
-	end
+	--	truncate table tblInfo
+	--end
 	

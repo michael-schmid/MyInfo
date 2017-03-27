@@ -7,7 +7,8 @@
 	VisualPath	varchar(max)					,
 	[Name]		VARCHAR(128)					, 
     [Key]		VARCHAR(100)					, 
-    [Value]		nvarchar(1000)						, 
+    [Value]		nvarchar(1000)					, 
     [Url]		VARCHAR(2000)					,
-	[iDate]		DATETIME						
+	[iDate]		DATETIME						,
+	[cDate]		DATETIME						
 )

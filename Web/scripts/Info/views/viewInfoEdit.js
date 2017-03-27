@@ -10,10 +10,13 @@
         API         require(['viewInfoTable'], function(view) {
                         view.display($elelement, { Id: "testId", Name: "testName", Key: "testKey", Value: "testValue" }
                     });
+
+        URL         /#/view/InfoEdit
+
         Testing     
     --------------------------------------------------------------------------------------------------------------------- **/
 
-define(['jquery', 'infoData', 'infoStore', 'jsrender', 'amplify'], function ($, iData, iStore) {
+define(['jquery', 'infoData', 'infoStore', 'viewInfoSave', 'jsrender', 'amplify'], function ($, iData, iStore, viewInfoSave) {
        
     // refresh the displayed data for editing
     var refreshData = function (info) {
@@ -23,7 +26,7 @@ define(['jquery', 'infoData', 'infoStore', 'jsrender', 'amplify'], function ($, 
         $('#inpKey').val(info.Key);
         $('#inpValue').val(info.Value); 
         $('#inpUrl').val(info.Url);
-        $('#infoId').val(info.Id);
+        $('#infoId').text(info.Id);
         $('#inpName').val(info.Name);
     };
 
@@ -40,75 +43,70 @@ define(['jquery', 'infoData', 'infoStore', 'jsrender', 'amplify'], function ($, 
 
         // compile needed templates
         $.templates({
-            editTemplate: '<div>\
-                            <form role="form" class="form-horizontal">\
-                                <div class="row">\
-                                    <div class="col-md-6">\
-                                        <label for="inpKey">Key</label><br />\
-										<input type="text" value="{{:Id}}" class="form-control" id="infoId" placeholder="Key">\
-										<div class="row">\
-											<div class="col-md-10">\
-												<div class="form-group">\
-													<label for="inpName">Name</label><br />\
-													<textarea type="text" value="{{:Name}}" class="form-control" id="inpName" placeholder="Name"></textarea>\
-												</div>\
-											</div>\
+        	editTemplate: '<div class="editForm">\
+								<form role="form">\
+									<div class="form-group row">\
+										<div class="col-md-2">\
+											<div style="color:white; font-size:2em" id="infoId">{{:Id}}</div>\
 										</div>\
-										<div class="row">\
-										<div class="col-md-6">\
-												<div class="form-group">\
-													<label for="inpKey">Key</label><br />\
-													<input type="text" value="{{:Key}}" class="form-control" id="inpKey" placeholder="Key">\
-												</div>\
-											</div>\
-											<div class="col-md-4">\
-												<div class="form-group">\
-													<label>Action</label><br />\
-													<button id="saveInfo" class="btn btn-default">Save</button>\
-													<button id="deleteInfo" class="btn btn-default">Delete</button>\
-													<button id="newInfo" class="btn btn-default">New</button>\
-												</div>\
-											</div>\
+										<div class="col-md-3">\
+											<div style="color:white; font-size:2em">Change</div>\
+										</div>\
+										<div class="col-md-2">\
+											<!-- Display info processing -->\
+											<div id="progress"></div>\
+										</div>\
+										<div class="col-md-4">\
+											<button id="saveInfo" class="btn btn-default">Save</button>\
+											<button id="deleteInfo" class="btn btn-default">Delete</button>\
+											<button id="newInfo" class="btn btn-default">New</button>\
 										</div>\
 									</div>\
-									<div class="col-md-4">\
-										<div class="row">\
-											<div class="col-md-7 col-md-offset-1">\
-												<div class="form-group">\
-													<label for="inpValue">Value</label>\
-													<input type="text" value="{{:Value}}" class="form-control" id="inpValue" placeholder="Value">\
-												</div>\
-											</div>\
-										</div>\
-										<div class="row">\
-											<div class="col-md-7 col-md-offset-1">\
-												<div class="form-group">\
-														<div id="InfoId">{{:Id}}</div>\
-													<label for="inpParentID">ParentID</label><br />\
-													<input type="text" value="{{:ParentId}}" class="form-control" id="inpParentID" placeholder="ParentID">\
-												</div>\
-											</div>\
-										</div>\
-										<div class="row">\
-											<div class="col-md-7 col-md-offset-1">\
-												<div class="form-group">\
-														<label for="inpUrl">Url</label><br />\
-													<input type="text" value="{{:Url}}" class="form-control" id="inpUrl" placeholder="Url">\
-												</div>\
+									<div class="form-group row">\
+										<div class="col-md-2">\
+											<label for="inpName">Name</label><br />\
+									</div>\
+										<div class="col-md-10">\
+											<textarea type="text" value="{{:Name}}" class="form-control no-border" id="inpName" placeholder="Name"></textarea>\
 										</div>\
 									</div>\
-                                    </div>\
-                              </div>\
-							</form>\
-						</div>'
+									<div class="form-group row">\
+										<div class="col-md-2">\
+											<label for="inpValue" >Value</label>\
+										</div>\
+										<div class="col-md-10">\
+											<input type="text" value="{{:Value}}" class="form-control no-border" id="inpValue" placeholder="Value">\
+										</div>\
+									</div>\
+									<div class="form-group row">\
+										<div class="col-md-2">\
+											<label for="inpUrl">Url</label><br />\
+										</div>\
+										<div class="col-md-10">\
+											<input type="text" value="{{:Url}}" class="form-control no-border" id="inpUrl" placeholder="Url">\
+										</div>\
+									</div>\
+									<div class="form-group row">\
+										<div class="col-md-2 offset-md-2">\
+											<label for="inpParentID">ParentID</label><br />\
+											<input type="text" value="{{:ParentId}}" class="form-control no-border" id="inpParentID" placeholder="ParentID">\
+										</div>\
+										<div class="col-md-8">\
+											<label for="inpKey" >Key</label><br />\
+											<input type="text" value="{{:Key}}" class="form-control no-border" id="inpKey" placeholder="Key">\
+										</div>\
+									</div>\
+								</form>\
+							</div>'
         });
 
         // add the form to the element
         var $editForm = $($.render.editTemplate(infoDetail));
         $element.empty().append($editForm);
 
+    	// enable display and subsription for imformation processing
+        viewInfoSave.display($('#progress'));
 
-        
 
         // save event triggers save action
         $editForm.find('#saveInfo').on('click', function (e) {
@@ -117,7 +115,7 @@ define(['jquery', 'infoData', 'infoStore', 'jsrender', 'amplify'], function ($, 
             // create a new object0
             info = {};
 
-            info.Id = $('#infoId').val();
+            info.Id = $('#infoId').text();
             info.ParentID = $('#inpParentID').val()
             info.Name = $('#inpName').val();
             info.Key = $('#inpKey').val();
@@ -125,14 +123,14 @@ define(['jquery', 'infoData', 'infoStore', 'jsrender', 'amplify'], function ($, 
             info.Url = $('#inpUrl').val();
             info.Saved = undefined;
 
-            amplify.publish('info.save', info); 
+            amplify.publish('info.save', info);
         });
 
         // delete an information
         $editForm.find('#deleteInfo').on('click', function (e) {
             e.preventDefault();
 
-            var infoId = $('#infoId').val();
+            var infoId = $('#infoId').text();
 
             $.when(iData.delete(infoId))
                 .then(function (data) {
@@ -148,6 +146,7 @@ define(['jquery', 'infoData', 'infoStore', 'jsrender', 'amplify'], function ($, 
                 
         });
         
+		// Display information on select event (from the information list)
         amplify.subscribe("info.select", function (infoId) {
             $.when(iData.data(infoId))
             .then(function (data) {
@@ -155,6 +154,9 @@ define(['jquery', 'infoData', 'infoStore', 'jsrender', 'amplify'], function ($, 
                 console.log('infoEdit: receive info.select event: ' + infoId);
                 // alert(JSON.stringify(data));
                 refreshData(data[0]);
+                
+                // make the edit form visible
+                $element.show();
             });
         });
 

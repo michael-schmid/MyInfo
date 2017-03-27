@@ -1,4 +1,5 @@
 ﻿/*  ------------------------------------------------------------------------------------------------------------------------
+        
         Visualize Inforamtion Data
 
         Purpose     Dispaly Landing page for manageing informations
@@ -7,8 +8,10 @@
         
         Output      Templated HTML Markup
 
-  
-    --------------------------------------------------------------------------------------------------------------------- **/
+        Url         http://www.info.domemory.net/#/view/HomeOld
+
+        --------------------------------------------------------------------------------------------------------------------- **/
+
 
 define(['jquery', 'viewInfoEdit', 'jsrender', 'amplify'  ], function ($, editView) {
        
@@ -16,7 +19,6 @@ define(['jquery', 'viewInfoEdit', 'jsrender', 'amplify'  ], function ($, editVie
 	var display = function ($element) {
 
 		console.log('### Display viewHowme');
-
 		
     	var markup = '<div class="row">\
 						<div class="col-md-10">\

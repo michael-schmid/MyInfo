@@ -44,14 +44,11 @@ define(['jquery', 'amplify', 'infoData'], function ($, amplify, iData) {
 		$text = $('<div><textarea class="form-control" rows="10" id="infoJSON"></textarea></div>');
 		$element.append($text);
 
-
-
-
         // visualize the infos
 		displayLocalProgressList();
 
 		// save objects
-		amplify.subscribe('info.save', function (info) {
+		amplify.subscribe('info.saveprogress', function (info) {
 			
             // create a new entry in the progess list
 			infos.push(info);
@@ -64,14 +61,10 @@ define(['jquery', 'amplify', 'infoData'], function ($, amplify, iData) {
 
 			//// store the info locally:
 			amplify.store('infoList', infos);
-
-
-
 		});
 		// check if all locally information were sent to the server
 		checkSave();
 	};
-
 
     // manage display of import / export function
     // to 

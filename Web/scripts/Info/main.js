@@ -35,7 +35,7 @@ requirejs.config({
     shim: {
         /* Set bootstrap dependencies (just jQuery) */
         'bootstrap': {
-            deps: ["jquery"]
+            deps: ["jquery", 'tether']
         },
         'jsrender': ['jquery'],
         'sammy': {
@@ -49,17 +49,4 @@ requirejs.config({
     }
 });
 
-// init function to load the tether lib globally
-function init() {
-    require(['jquery'], function ($) {
-        $(function () {
-            require(['tether'], function (Tether) {
-                window.Tether = Tether;
-                return Tether;
-            });
-        });
-    });
-};
-
-init();
 

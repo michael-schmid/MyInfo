@@ -111,6 +111,11 @@
     <None Include="info.domemory.com\_info_getInfoHistory.sql" />
     <Build Include="info.domemory.com\Procedures\pInfoHistory.sql" />
     <Build Include="info.domemory.com\Procedures\pInfo.sql" />
+    <None Include="_info_getInfoHistory.sql" />
+    <None Include="info.domemory.com\_info_getInfoNodes.sql" />
+    <None Include="info.domemory.com\_info_getAllNodes.sql" />
+    <None Include="info.domemory.com\_info_getInfofromAnDay.sql" />
+    <None Include="info.domemory.com\info_updateParentID.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Snapshots\Database1_20130413_11-19-53.dacpac" />

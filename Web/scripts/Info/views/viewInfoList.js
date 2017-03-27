@@ -14,6 +14,7 @@
 		URL			/#/view/InfoList
 
 
+
         Testing     
     --------------------------------------------------------------------------------------------------------------------- **/
 
@@ -24,45 +25,44 @@ define(['jquery', 'infoData', 'jsrender', 'amplify'], function ($, infoData) {
     var displayList = function ($element) {
 
         var $currentItem;
-
+        var infoTemplate = '<li class="infoItem"  id={{:Id}}> {{:Name}}\
+                                {{:Value}}\
+                                <div class="detail">\
+                                      {{if (Url || "") !== ""}}<a target="_blank" href="{{:Url}}">Link</a>{{else}}{{/if}}\
+                                        id: {{:Id}} {{:Key}}  iDate: {{:iDate}} parentId: {{:ParentId}}\
+                                </div>\
+                            </li>'
         // remove a deleted item
         amplify.subscribe('info.deleted', function () {
-            $currentItem.css('color', 'silver');
+            $currentItem.remove();
         })
+
+		// when an info item is created add a new info to the list
+        amplify.subscribe('info.created', function (info) {
+        	$element.find('#infolist').prepend($.render.itemTemplateDL([info]));
+        })
+
 
     	getData()
 		 .done(function (data, status, xhr) {
 
 		 	// compile needed templates
-		 	$.templates({
-
-		 		itemTemplateDL: '<dt class="infoItem"  style="padding-left:{{:Level}}em" id={{:Id}}><h4> {{:Name}}<h4></dt>\
-                             <dd>\
-                                <div style="padding-left:{{:Level}}em">\
-                                    <div>{{:Id}} {{:Key}}</div>\
-									<div>{{:cDate}}</div>\
-                                    {{if (Url || "") !== ""}}<a target="_blank" href="{{:Url}}">{{:Value}}</a>{{else}}{{:Value}}{{/if}}\
-                                </div>\
-                            </dd>'
-		 	});
+		 	$.templates({ itemTemplateDL: infoTemplate });
 
 		 	// render data to data items
-		 	var infolistMarkup = '<div id="infoDisplay class="infoDl"><dl >' + $.render.itemTemplateDL(data) + ' </dl></div>';
-
-
+		 	var infolistMarkup = '<div id="infoDisplay"><ul id="infolist">' + $.render.itemTemplateDL(data) + ' </ul></div>';
+		 	$element.append(infolistMarkup);
+			
 		 	// change edit object
-		 	$($element)
+		     $($element)
 				.on('click', '.infoItem', function () {
 				    amplify.publish("info.select", $(this).attr('Id'));
 
                     // set the current item
 				    $currentItem = $(this);
 				    $currentItem.css('color', 'red');
-				    
 				});
-		 	$element.append(infolistMarkup);
 		 })
-
     };
 
     var getData = function () {

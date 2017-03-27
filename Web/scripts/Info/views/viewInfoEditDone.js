@@ -18,7 +18,6 @@ define(['jquery', 'infoData', 'infoStore', 'viewInfoSave', 'jsrender', 'amplify'
        
     // refresh the displayed data for editing
     var refreshData = function (info) {
-
         // create a new object0
         $('#inpParentID').val(info.ParentID);
         $('#inpKey').val(info.Key);
@@ -40,8 +39,7 @@ define(['jquery', 'infoData', 'infoStore', 'viewInfoSave', 'jsrender', 'amplify'
         // with a done information is the name the current date
         var today = new Date().toJSON().slice(0, 10).replace(/-/g, '-');        // -- 
 
-        infoDetail.Name = today;
-        
+        infoDetail.ParentId = today;
 
         // compile needed templates
         $.templates({
@@ -59,8 +57,8 @@ define(['jquery', 'infoData', 'infoStore', 'viewInfoSave', 'jsrender', 'amplify'
                                     <div class="col-md-2">\
                                         <!-- Name Field = Current Date -->\
 										<div class="form-group">\
-											<label for="inpName">Name</label><br />\
-											<input type="text" value="{{:Name}}" class="form-control" id="inpName" placeholder="Current Date"></input>\
+											<label for="ParentId">Parent Id</label><br />\
+											<input type="text" value="{{:ParentId}}" class="form-control" id="inpParentId" placeholder="Current Date"></input>\
 										</div>\
 									</div>\
 								</div>\
@@ -92,7 +90,7 @@ define(['jquery', 'infoData', 'infoStore', 'viewInfoSave', 'jsrender', 'amplify'
             info = {};
 
             info.Id = $('#infoId').val();
-            info.ParentID = $('#inpParentID').val()
+            info.ParentId = $('#inpParentId').val()
             info.Name = $('#inpName').val();
             info.Key = $('#inpKey').val();
             info.Value = $('#inpValue').val();
@@ -111,9 +109,7 @@ define(['jquery', 'infoData', 'infoStore', 'viewInfoSave', 'jsrender', 'amplify'
             $.when(iData.delete(infoId))
                 .then(function (data) {
                     console.log('infoEdit: receive info.delete event: ' + infoId);
-
                     amplify.publish("info.deleted", infoId);
-
                 })
                 .fail(function () {
                     alert('Delete Info failed: ' + infoId);
@@ -128,23 +124,6 @@ define(['jquery', 'infoData', 'infoStore', 'viewInfoSave', 'jsrender', 'amplify'
                 refreshData(data[0]);
             });
         });
-
-        //// create a new item
-        //$editForm.find('#newInfo').on('click', function (e) {
-        //    e.preventDefault();
-
-        //    // create a new object0
-        //    info = {};
-
-        //    info.ParentID = $('#inpParentID').val()
-        //    info.Name = $('#inpName').val();
-        //    info.Key = $('#inpKey').val();
-        //    info.Value = $('#inpValue').val();
-        //    info.Url = $('#inpUrl').val();
-
-        //    // save new information
-        //    saveInfo($('#newInfo').text(), info);
-        //});
     };
     return {
         display: display   

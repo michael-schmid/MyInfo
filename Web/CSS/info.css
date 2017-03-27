@@ -20,8 +20,47 @@
 }
 
 
-.infoDl  dd, , dd.infoItem 
+.infoDl  dd, dd.infoItem 
 {
 	width:100%;
 	margin: 0 0 1em 0;
 }
+
+
+.no-border {
+	border:0
+}
+
+div.editForm {
+	/* border: solid thin gray; */
+	background-color:lavender;
+	padding: 10px;
+}
+
+li.infoItem {
+	padding:8px; font-style:normal; 
+	font-family: Verdana, Geneva, Tahoma, sans-serif; 
+	font-size:16px; 
+	color: black;
+	border-left: 1px solid #999;
+}
+
+li.infoItem .detail {
+
+	color:white;
+}
+
+li.infoItem:hover {
+	background-color:cornflowerblue
+}
+
+li.infoItem:focus {
+	background-color:cornflowerblue
+}
+
+/* LIST #2 */
+#list2 { width:320px; }
+#list2 ol { font-style:italic; font-family:Georgia, Times, serif; font-size:24px; color:#bfe1f1;  }
+#list2 ol li { }
+#list2 ol li p { padding:8px; font-style:normal; font-family:Arial; font-size:13px; color:#eee; border-left: 1px solid #999; }
+#list2 ol li p em { display:block; }

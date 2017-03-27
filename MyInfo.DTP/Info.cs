@@ -9,7 +9,7 @@ namespace MyInfo.DTO
     public class InfoDTO
     {
         public int Id { get; set; }
-        public string parentId { get; set; }
+        public string ParentId { get; set; }
         public int Level { get; set; }
         public string Name { get; set; }
         public string Key { get; set; }

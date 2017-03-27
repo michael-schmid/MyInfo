@@ -6,8 +6,14 @@
 
 
 require(['main'], function () {
-    require(['jquery'], function ($, Sammy) {
-        require(['sammy', 'bootstrap'], function (Sammy) {
+    require(['jquery', 'tether'], function ($, Tether) {
+
+
+        // make sure tether is globally availabe for bootstrap
+        window.Tether = Tether;
+        
+
+        require(['sammy'], function (Sammy) {
 		// initialize the application
 		var app = Sammy(function () {
 

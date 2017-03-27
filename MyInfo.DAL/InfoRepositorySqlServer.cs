@@ -106,7 +106,7 @@ namespace MyInfo.DAL
                 using (SqlCommand cmd = new SqlCommand("dbo.pInfoAdd", conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.Add(new SqlParameter("@parentID", item.parentId));
+                    cmd.Parameters.Add(new SqlParameter("@parentID", item.ParentId));
                     cmd.Parameters.Add( new SqlParameter("@Name", item.Name));
                     cmd.Parameters.Add(new SqlParameter("@Key", item.Key));
                     cmd.Parameters.Add(new SqlParameter("@Value", item.Value));

@@ -14,5 +14,5 @@ Post-Deployment Script Template
 	-- select	* from	tblInfoSave
 	-- select	* from	tblInfo
 
-	insert into tblInfo(text, idate, pos)
-	select text, idate, pos from tblInfoSave
+	--insert into tblInfo(text, idate, pos)
+	--select text, idate, pos from tblInfoSave

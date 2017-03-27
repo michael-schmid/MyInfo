@@ -1,7 +1,7 @@
 ﻿
 /*	-------------------------------------------------------------------
 	
-	Get a list of collected information ordered by date
+	Get an information with its childs
 
 	--SQL5003.Smarterasp.net
 
@@ -15,6 +15,7 @@
 
 	--	with procedure
 		exec dbo.pInfoHistory
+
 
 
 			select	c.Name					,

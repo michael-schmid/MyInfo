@@ -13,6 +13,11 @@
 		order	by id desc
 
 
+
+		delete from tblI where id > 2291
+
+
+
 	
 	--	Create Info
 

@@ -25,7 +25,7 @@ define(['jquery', 'amplify', 'infoData'], function ($, amplify, iData) {
 			save(info);
 
             // append it to the progress list
-			$iList.append('<li>' + info.Name);
+			$iList.append('<li>' + info.Name + '</li>');
 		});
 		
 	};
@@ -42,12 +42,17 @@ define(['jquery', 'amplify', 'infoData'], function ($, amplify, iData) {
         }
         else {
             // no id create a new item.
-            var promise = iData.create(info.Name, info);
+	    	var promise = iData.create(info.Name, info);
+
+	    	amplify.publish('info.created', info);
+
         }
 		promise.done(function () {
 		    // set the savd date
 		    info["Saved"] = (new Date().toJSON());
 		});
+
+
 
 		return promise;
 	};

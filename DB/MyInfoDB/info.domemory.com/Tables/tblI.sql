@@ -7,5 +7,6 @@
 	[Name]		VARCHAR(128) NULL, 
     [Key]		VARCHAR(100) NULL, 
     [Value]		varchar(1000) NULL, 
-    [Url]		VARCHAR(2000) NULL
+    [Url]		VARCHAR(2000) NULL, 
+    [cDate] DATETIME2 NULL
 )
