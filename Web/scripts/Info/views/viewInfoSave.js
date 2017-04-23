@@ -18,15 +18,30 @@ define(['jquery', 'amplify', 'infoData'], function ($, amplify, iData) {
 	var display = function ($element) {
 
 	    $iList = $('<ul></ul>').appendTo($element);
-        
-		// save objects
-		amplify.subscribe('info.save', function (info) {
-		    // save and send to the server
-			save(info);
+		// 
+	    function saveF(info) {
 
-            // append it to the progress list
-			$iList.append('<li>' + info.Name + '</li>');
-		});
+	    	// new item to send to the server
+	    	var saveItem = '<li id="save">' + JSON.stringify(info) + '</li>';
+
+	    	// append it to the progress list
+	    	$iList.append(saveItem);
+
+	    	// save and send to the server
+	    	save(info)
+	    		.done(function () {
+	    			$iList.text('saved');
+	    		})
+	    		.fail(function () {
+	    			$iList.text('error');
+	    		});
+	    	return false;
+	    }
+
+		//// fist unsubscrbe all to prevent double saves
+	    //amplify.unsubscribe('info.save', saveF);
+		// save objects
+		amplify.subscribe('info.save', saveF);
 		
 	};
         

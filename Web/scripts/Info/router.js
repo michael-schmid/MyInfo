@@ -24,6 +24,13 @@ require(['main'], function () {
 				});
 			});
 
+			// my day Template
+			this.get('#/myday', function () {
+				require(['viewMyDay'], function (view) {
+					view.display($('#mainDisplay').empty());
+				});
+			});
+
 			this.get('#/list', function () {
 				require(['viewInfoTable', 'infoData'], function (view, infoData) {
 					infoData.journal().done(function (data) {

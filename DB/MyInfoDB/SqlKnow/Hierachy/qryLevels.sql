@@ -51,6 +51,8 @@
 
 		--	Graphical output
 			select	id, 
+					hid.ToString()	Hierarchy,
 					REPLICATE('     ', hid.GetLevel()) + text as Text
 			from	#tblInfo
+			-- where	hid.ToString() like '/2%'
 			order	by hid;

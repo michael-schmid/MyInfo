@@ -37,6 +37,51 @@ namespace MyInfo.DAL
             }
         }
 
+
+        // get day informations : when not exist in the database it will created
+        public List<InfoDTO> InfoDay(string Name)
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[ConfigurationManager.AppSettings["connection"]].ConnectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand("pInfoDayGet", conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add(new SqlParameter("@Name", Name));
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    List<InfoDTO> infoList = DataReader2Object.GetList<InfoDTO>(dr);
+                    return infoList;
+                }
+            }
+        }
+
+
+
+        // return list of information based on its name
+        public List<InfoDTO> Infos(string Name)
+        {
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings[ConfigurationManager.AppSettings["connection"]].ConnectionString))
+            {
+                conn.Open();
+
+                Object infoID;
+               
+
+                using (SqlCommand cmd = new SqlCommand("pInfoo", conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add(new SqlParameter("@Name", Name));
+                    // cmd.Parameters.Add(new SqlParameter("@parentId", infoID));
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    List<InfoDTO> infoList = DataReader2Object.GetList<InfoDTO>(dr);
+                    return infoList;
+                }
+            }
+        }
+
+
         // return list of information
         public List<InfoDTO> Infos(int ID)
         {

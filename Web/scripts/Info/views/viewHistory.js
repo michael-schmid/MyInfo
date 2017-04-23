@@ -6,8 +6,7 @@
         Input       JSON Data
         
         Output      Templated HTML Markup
-
-  
+		  
     --------------------------------------------------------------------------------------------------------------------- **/
 
 define(['jquery', 'infoData', 'jsrender', 'amplify'], function ($, iData) {
@@ -26,7 +25,6 @@ define(['jquery', 'infoData', 'jsrender', 'amplify'], function ($, iData) {
 
     	$.when(iData.history())
 			.then(function (data) {
-
 				// render data to data items
 				var infolistMarkup = '<table class="table table-hover"><thead><th>parentId</th><th>Name</th><th><th></th></tr></thead>' + $.render.itemTemplateDL(data) + '</table>';
 

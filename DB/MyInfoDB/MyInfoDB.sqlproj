@@ -116,6 +116,12 @@
     <None Include="info.domemory.com\_info_getAllNodes.sql" />
     <None Include="info.domemory.com\_info_getInfofromAnDay.sql" />
     <None Include="info.domemory.com\info_updateParentID.sql" />
+    <Build Include="info.domemory.com\Procedures\pInfoDayGet.sql" />
+    <None Include="info.domemory.com\info_Hierarchy.sql" />
+    <None Include="info.domemory.com\info_Day.sql" />
+    <None Include="dbo\Tables\_info_getInfoNodes.sql" />
+    <None Include="info.domemory.com\info_InfoNodeCount.sql" />
+    <Build Include="info.domemory.com\Procedures\pInfoHirar.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Snapshots\Database1_20130413_11-19-53.dacpac" />

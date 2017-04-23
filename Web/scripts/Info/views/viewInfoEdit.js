@@ -34,13 +34,11 @@ define(['jquery', 'infoData', 'infoStore', 'viewInfoSave', 'jsrender', 'amplify'
 
         // create a wrapper object to access the infoDetail with .infoDetail notation
         var infoRoot = [{ info: infoDetail }];
-
-        
+		        
         // default: new root object
         if (!infoDetail)
             var infoDetail = { ParentId: parentId, Key: "", Value: "", Url: "", Name: "Name" };
-
-
+		
         // compile needed templates
         $.templates({
         	editTemplate: '<div class="editForm">\
@@ -106,8 +104,7 @@ define(['jquery', 'infoData', 'infoStore', 'viewInfoSave', 'jsrender', 'amplify'
 
     	// enable display and subsription for imformation processing
         viewInfoSave.display($('#progress'));
-
-
+		
         // save event triggers save action
         $editForm.find('#saveInfo').on('click', function (e) {
             e.preventDefault();
@@ -135,19 +132,15 @@ define(['jquery', 'infoData', 'infoStore', 'viewInfoSave', 'jsrender', 'amplify'
             $.when(iData.delete(infoId))
                 .then(function (data) {
                     console.log('infoEdit: receive info.delete event: ' + infoId);
-
                     amplify.publish("info.deleted", infoId);
-
                 })
                 .fail(function () {
                     alert('Delete Info failed: ' + infoId);
                 });
-
-                
         });
         
 		// Display information on select event (from the information list)
-        amplify.subscribe("info.select", function (infoId) {
+        amplify.subscribe("info.select", function (infoId, $editDisplay) {
             $.when(iData.data(infoId))
             .then(function (data) {
 
@@ -155,26 +148,28 @@ define(['jquery', 'infoData', 'infoStore', 'viewInfoSave', 'jsrender', 'amplify'
                 // alert(JSON.stringify(data));
                 refreshData(data[0]);
                 
-                // make the edit form visible
-                $element.show();
+                if ($editDisplay.length > 0) {
+					// Enable Inline Edit from the Infolist
+                	// we found an edit object to display
+                	$element.show().appendTo($editDisplay);
+                } else {
+                	// display the edit on the defined place
+                	// make the edit form visible
+                	$element.show();
+                }
+				////// Full Screen Modus ?????
             });
         });
-
-
-
         //// create a new item
         //$editForm.find('#newInfo').on('click', function (e) {
         //    e.preventDefault();
-
         //    // create a new object0
         //    info = {};
-
         //    info.ParentID = $('#inpParentID').val()
         //    info.Name = $('#inpName').val();
         //    info.Key = $('#inpKey').val();
         //    info.Value = $('#inpValue').val();
         //    info.Url = $('#inpUrl').val();
-
         //    // save new information
         //    saveInfo($('#newInfo').text(), info);
         //});

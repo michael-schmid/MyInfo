@@ -83,9 +83,46 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSS\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="CSS\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="CSS\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="CSS\font-awesome-4.7.0\HELP-US-OUT.txt" />
     <Content Include="CSS\info.css" />
     <Content Include="CSS\mocha.css" />
     <Content Include="Global.asax" />
+    <Content Include="CSS\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="CSS\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="CSS\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="CSS\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="CSS\font-awesome-4.7.0\fonts\FontAwesome.otf" />
+    <Content Include="CSS\font-awesome-4.7.0\less\animated.less" />
+    <Content Include="CSS\font-awesome-4.7.0\less\bordered-pulled.less" />
+    <Content Include="CSS\font-awesome-4.7.0\less\core.less" />
+    <Content Include="CSS\font-awesome-4.7.0\less\fixed-width.less" />
+    <Content Include="CSS\font-awesome-4.7.0\less\font-awesome.less" />
+    <Content Include="CSS\font-awesome-4.7.0\less\icons.less" />
+    <Content Include="CSS\font-awesome-4.7.0\less\larger.less" />
+    <Content Include="CSS\font-awesome-4.7.0\less\list.less" />
+    <Content Include="CSS\font-awesome-4.7.0\less\mixins.less" />
+    <Content Include="CSS\font-awesome-4.7.0\less\path.less" />
+    <Content Include="CSS\font-awesome-4.7.0\less\rotated-flipped.less" />
+    <Content Include="CSS\font-awesome-4.7.0\less\screen-reader.less" />
+    <Content Include="CSS\font-awesome-4.7.0\less\stacked.less" />
+    <Content Include="CSS\font-awesome-4.7.0\less\variables.less" />
+    <Content Include="CSS\font-awesome-4.7.0\scss\font-awesome.scss" />
+    <Content Include="CSS\font-awesome-4.7.0\scss\_animated.scss" />
+    <Content Include="CSS\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
+    <Content Include="CSS\font-awesome-4.7.0\scss\_core.scss" />
+    <Content Include="CSS\font-awesome-4.7.0\scss\_fixed-width.scss" />
+    <Content Include="CSS\font-awesome-4.7.0\scss\_icons.scss" />
+    <Content Include="CSS\font-awesome-4.7.0\scss\_larger.scss" />
+    <Content Include="CSS\font-awesome-4.7.0\scss\_list.scss" />
+    <Content Include="CSS\font-awesome-4.7.0\scss\_mixins.scss" />
+    <Content Include="CSS\font-awesome-4.7.0\scss\_path.scss" />
+    <Content Include="CSS\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
+    <Content Include="CSS\font-awesome-4.7.0\scss\_screen-reader.scss" />
+    <Content Include="CSS\font-awesome-4.7.0\scss\_stacked.scss" />
+    <Content Include="CSS\font-awesome-4.7.0\scss\_variables.scss" />
     <None Include="Properties\PublishProfiles\SmarterASP.pubxml" />
     <None Include="scripts\amplify-vsdoc.js" />
     <Content Include="index.html" />
@@ -103,6 +140,7 @@
     <Content Include="scripts\infoStoreApp.js" />
     <Content Include="scripts\Info\info.js" />
     <Content Include="scripts\Info\infoConfig.js" />
+    <Content Include="scripts\Info\infosData.js" />
     <Content Include="scripts\Info\infoData.js" />
     <Content Include="scripts\Info\infoForm.js" />
     <Content Include="scripts\Info\infoMockData.js" />
@@ -115,6 +153,7 @@
     <Content Include="scripts\Info\test\infoStore-test.js" />
     <Content Include="scripts\Info\test\infoStoreWebService-test.js" />
     <Content Include="scripts\Info\views\viewHome.js" />
+    <Content Include="scripts\Info\views\viewMyDay.js" />
     <Content Include="scripts\Info\views\viewInfoEditDone.js" />
     <Content Include="scripts\Info\views\viewInfoSave.js" />
     <Content Include="scripts\Info\views\viewInfoProgress.js" />
@@ -373,6 +412,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\InfoDayController.cs" />
     <Compile Include="Controller\InfoHistoryController.cs" />
     <Compile Include="Controller\ObjectController.cs" />
     <Compile Include="Controller\InfoController.cs" />

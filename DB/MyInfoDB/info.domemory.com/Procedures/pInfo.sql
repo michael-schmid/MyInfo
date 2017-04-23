@@ -14,12 +14,16 @@
 
 create procedure [dbo].[pInfoo]
 	
-	@Id				int = null		
+	@Id				int = null		,
+	@Name			varchar(250) = null
 	
 as
 set nocount on
 
 	-- select * from tblI
+
+	-- declare @name varchar(250) = '2017-03-19'; 
+	-- 	declare @id int = null;
 
 			select	p.id							,
 					p.hid.ToString()		Hierarchy	,
@@ -33,11 +37,9 @@ set nocount on
 			from	tblI	c
 		  join	tblI	p
 			on	c.hid.IsDescendantOf(p.hid)	= 1
-		where	(c.id = @id  and	 c.Level <= p.level + 1)				-- only child items from the first level
-		  or	(@id is null and	p.level = 1 and c.Level = 1)		-- when no id is given return the root
-		
-
-
+		where	((c.id = @id  and	 c.Level <= p.level + 1)				-- only child items from the first level
+		  or	(@id is null and	p.level = 1 and c.Level = 1))		-- when no id is given return the root
+		  and   ( c.name = @name or @name is null) 
 	/*
 		--	display an item and its direct descendants
 			select	--c.*, c.hid.ToString()		Path	, 

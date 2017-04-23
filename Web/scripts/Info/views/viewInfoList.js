@@ -27,10 +27,13 @@ define(['jquery', 'infoData', 'jsrender', 'amplify'], function ($, infoData) {
         var $currentItem;
         var infoTemplate = '<li class="infoItem"  id={{:Id}}> {{:Name}}\
                                 {{:Value}}\
+								{{:Key}}\
                                 <div class="detail">\
                                       {{if (Url || "") !== ""}}<a target="_blank" href="{{:Url}}">Link</a>{{else}}{{/if}}\
                                         id: {{:Id}} {{:Key}}  iDate: {{:iDate}} parentId: {{:ParentId}}\
                                 </div>\
+								<div class="editDisplay">\
+								</div>\
                             </li>'
         // remove a deleted item
         amplify.subscribe('info.deleted', function () {
@@ -56,7 +59,10 @@ define(['jquery', 'infoData', 'jsrender', 'amplify'], function ($, infoData) {
 		 	// change edit object
 		     $($element)
 				.on('click', '.infoItem', function () {
-				    amplify.publish("info.select", $(this).attr('Id'));
+
+					// publish the info select and return the element
+					var $dispElement = $(this);
+					amplify.publish("info.select", $dispElement.attr('Id'), $dispElement.find('.editDisplay'));
 
                     // set the current item
 				    $currentItem = $(this);

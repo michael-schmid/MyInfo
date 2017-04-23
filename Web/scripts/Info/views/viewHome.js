@@ -11,27 +11,47 @@
   
     --------------------------------------------------------------------------------------------------------------------- **/
 
-define(['jquery', 'viewInfoEdit', 'jsrender', 'amplify'  ], function ($, editView) {
+define(['jquery', 'viewInfoEdit', 'jsrender', 'amplify', 'bootstrap'  ], function ($, editView) {
        
     // display a list of information
 	var display = function ($element) {
 
 		console.log('### Display viewHowmeGrid');
 		
-    	var markup = '<div class="row">\
-                          <div class="col-md-5 col-md-offset-2">\
+		var markup = '	<div class="row">\
+							<div class="col-md-3">\
+								<h1>Information</h1>\
+							</div>\
+							<div class="col-md-3">\
+									<div class="btn-group" data-toggle="buttons">\
+										<i style="font-size:35px" class="fa fa-plus-square pull-left"></i>\
+									</div>\
+							</div>\
+							<div class="col-md-2">\
+								<div class="btn-group" data-toggle="buttons">\
+								  <label class="btn btn-primary active">Search\
+									<input type="radio" name="options" id="option1" autocomplete="off" checked>\
+								  </label>\
+								  <label class="btn btn-primary">Log\
+									<input type="radio" name="options" id="option2" autocomplete="off">\
+								  </label>\
+								  <label class="btn btn-primary">Days\
+									<input type="radio" name="options" id="option3" autocomplete="off">\
+								  </label>\
+									<label class="btn btn-primary">Stat\
+									<input type="radio" name="options" id="option3" autocomplete="off">\
+								  </label>\
+								</div>\
+							</div>\
+						</div>\
+						<div class="row">\
+                          <div class="col-md-8">\
                             <h3>Add / Change</h3>\
 							<div id="displayChange">Change</div>\
                             <div id="infoEdit" style="display:none"></div>\
                                 <h3>Log</h3>\
                                 <div id="infoHistory"></div>\
                             </div>\
-                           <div class="col-md-3">\
-                                <h3 class="card-title">Days</h3>\
-                                <h3 class="card-title">Search</h3>\
-                                <h3 class="card-title">Stat</h3>\
-                                <h3 class="card-title">Stat</h3>\
-                          </div>\
                         </div>\
 					<div/>\
     	        ';

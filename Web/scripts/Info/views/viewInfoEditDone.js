@@ -97,7 +97,13 @@ define(['jquery', 'infoData', 'infoStore', 'viewInfoSave', 'jsrender', 'amplify'
             info.Url = $('#inpUrl').val();
             info.Saved = undefined;
 
-            amplify.publish('info.save', info); 
+
+			// just make sure all other publishes are deleted
+        	
+            amplify.publish('info.save', info);
+
+
+
         });
 
         // delete an information

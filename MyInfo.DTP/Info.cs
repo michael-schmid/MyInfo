@@ -16,6 +16,6 @@ namespace MyInfo.DTO
         public string Value { get; set; }
         public string Url { get; set; }
         public string iDate { get; set; }
-        public DateTime cDate { get; set; }
+        public string cDate { get; set; }
     }
 }

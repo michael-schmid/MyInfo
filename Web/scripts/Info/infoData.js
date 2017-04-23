@@ -4,6 +4,12 @@
 // utilized by: router
 define(['jquery', 'infoConfig'], function ($, iConfig) {
 
+
+	// DayName: Expect date with format: 2017-01-01
+	var infoDay = function (DayName) {
+        var action = iConfig.serviceURL + "/infoday/" + DayName;
+        return $.ajax({ url: action, type: "GET", contentType: "application/json;charset=utf-8" });
+    };
     var infoList = function () {
         var action = iConfig.serviceURL + "/info";
         return $.ajax({ url: action, type: "GET", contentType: "application/json;charset=utf-8" });

@@ -7,11 +7,8 @@ requirejs.config({
         'jquery': ['/scripts/lib/jquery-1.9.1'],
         /* Load bootstrap from cdn. On fail, load local file. */
         // 'bootstrap': ['https://maxcdn.botstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min'],
-
-        'bootstrap': ['/scripts/lib/bootstrap-4.0.0-alpha.6/bootstrap-4.0.0-alpha.6/dist/js/bootstrap.min'],
-
-
-        'sinon': ['/scripts/sinon-1.9.1'],
+		'bootstrap': ['/scripts/lib/bootstrap-4.0.0-alpha.6/bootstrap-4.0.0-alpha.6/dist/js/bootstrap.min'],
+		'sinon': ['/scripts/sinon-1.9.1'],
         'jsrender': ['/scripts/lib/jsrender.min']   ,
         'router': ['/scripts/info/router']           ,
         'sammy': ['/scripts/sammy-0.7.5.min'],
@@ -25,7 +22,8 @@ requirejs.config({
         'viewInfoEditDone': ['/scripts/info/views/viewInfoEditDone'],
         'viewInfoTable': ['/scripts/info/views/viewInfoTable'],
         'viewInfoSave': ['/scripts/info/views/viewInfoSave'],
-		'viewInfoList': ['/scripts/info/views/viewInfoList'],
+        'viewInfoList': ['/scripts/info/views/viewInfoList'],
+        'viewMyDay': ['/scripts/info/views/viewMyDay'],
 		'viewInfoProgress': ['/scripts/info/views/viewInfoProgress'],
 		'viewHistory': ['/scripts/info/views/viewHistory'],
 		'viewHome': ['/scripts/info/views/viewHome'],
