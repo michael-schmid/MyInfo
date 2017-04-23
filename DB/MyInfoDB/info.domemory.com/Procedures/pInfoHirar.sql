@@ -9,16 +9,12 @@
 					exec dbo.pInfoH @Name = '2017-04-20'
 
 					exec dbo.pInfoH @Name = '2017-04-22', @create=1
-
-
+					
 				Get entire Hierarchy
 					exec dbo.pInfoH 
 
 				select * from tblI order by idate desc
 
-
-
-	select * from tblI
 	--------------------------------------------------------------------------------------------------------------------------------------*/
 
 create procedure [dbo].[pInfoH]
@@ -60,22 +56,38 @@ set nocount on
 				end
 			end
 
-	--	only a node
-		select	i.id										,
-				i.hid.ToString()			as Hierarchy	,
-				i.Level									,
-				replicate('     ', i.hid.GetLevel()) + i.Name as VisualPath  ,
-				i.Name									,
-				i.[Key]									,
-				i.Value									,
-				i.Url										,
-				convert(varchar(20), i.iDate, 120)	iDate
-		from	tblI		i
-		  join	tbli		p
-		   on	p.Name = @Name or p.Name  = null 			-- '2017-04-20'
-		 where	i.hid.IsDescendantOf(p.hid)	= 1
-		-- where	hid.ToString() like '/297/%'
-		order	by i.hid;
-
-		-- select * from tblI
-
+		if not @name is null
+			begin
+			--	only a node
+			--	declare @name varchar(250) = null
+				select	i.id										,
+						i.hid.ToString()			as Hierarchy	,
+						i.Level									,
+						replicate('     ', i.hid.GetLevel()) + i.Name as VisualPath  ,
+						i.Name									,
+						i.[Key]									,
+						i.Value									,
+						i.Url										,
+						convert(varchar(20), i.iDate, 120)	iDate
+				from	tblI		i
+				  join	tbli		p
+				   on	p.Name = @Name  			-- '2017-04-20'
+				 where	i.hid.IsDescendantOf(p.hid)	= 1
+				-- where	hid.ToString() like '/297/%'
+				order	by i.hid;
+			end
+		else
+			begin
+				-- get entire Hierarchy
+				select	i.id										,
+						i.hid.ToString()			as Hierarchy	,
+						i.Level									,
+						replicate('     ', i.hid.GetLevel()) + i.Name as VisualPath  ,
+						i.Name									,
+						i.[Key]									,
+						i.Value									,
+						i.Url										,
+						convert(varchar(20), i.iDate, 120)	iDate
+				from	tblI		i
+				order	by i.hid;		
+			end

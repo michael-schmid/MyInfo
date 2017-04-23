@@ -47,7 +47,8 @@ define(['jquery', 'infoConfig'], function ($, iConfig) {
            return $.ajax({ url: action, type: "POST", datatype: "json" , data : info });
     };
     return {
-		history: history		,
+    	history: history		,
+		infoDay: infoDay		,
         list: infoList          ,
         journal: infoJournal    ,
         delete: del             ,

@@ -27,10 +27,12 @@ namespace MyInfo.DAL
             {
                 conn.Open();
                 // exec dbo.pInfoDayGet @Name = '2017-04-01'
-                using (SqlCommand cmd = new SqlCommand("pInfoDayGet", conn))
+                // exec dbo.pInfoH @Name = '2017-04-22', @create=1
+                using (SqlCommand cmd = new SqlCommand("pInfoH", conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.Add(new SqlParameter("@Name", DayName));
+                    cmd.Parameters.Add(new SqlParameter("@create", 1));
                     SqlDataReader dr = cmd.ExecuteReader();
                     List<InfoDTO> infoList = DataReader2Object.GetList<InfoDTO>(dr);
                     return infoList;

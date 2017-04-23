@@ -25,11 +25,21 @@ require(['main'], function () {
 			});
 
 			// my day Template
-			this.get('#/myday', function () {
+			this.get('#/myday/:dayName', function (context) {
 				require(['viewMyDay'], function (view) {
-					view.display($('#mainDisplay').empty());
+					view.display($('#mainDisplay').empty(), context.params['dayName']);
 				});
 			});
+
+			//// my day Template
+			//this.get('#/myday', function () {
+			//	require(['viewMyDay'], function (view) {
+			//		view.display($('#mainDisplay').empty());
+			//	});
+			//});
+
+		
+
 
 			this.get('#/list', function () {
 				require(['viewInfoTable', 'infoData'], function (view, infoData) {

@@ -27,24 +27,27 @@ define(['jquery', 'infoData', 'infoStore', 'viewInfoSave', 'jsrender', 'amplify'
         $('#inpName').val(info.Name);
     };
 
-    var display = function ($element, infoDetail, parentId) {
+    var display = function ($element, InfoName) {
 
-        // create a wrapper object to access the infoDetail with .infoDetail notation
-        var infoRoot = [{ info: infoDetail }];
-        
-        // default: new root object
-        if (!infoDetail)
-            var infoDetail = { ParentId: parentId, Key: "", Value: "", Url: "", Name: "Name" };
-        
-        // with a done information is the name the current date
-        var today = new Date().toJSON().slice(0, 10).replace(/-/g, '-');        // -- 
+		// request the hierarchy data for a day
+    	//getData.done(function (data) {
+    	//	alert(JSON.stringify(data));
+    	//});
 
-        infoDetail.ParentId = today;
+    	$.when(iData.infoDay(InfoName))
+			.then(function (data) {
+				
+				var $disp = $('<div></div>');
 
+				$element.append($disp);
 
-    	// get information for a particular day : 
-
-
+				// output current data
+				$disp.text(JSON.stringify(data));
+			
+			})
+			.fail(function () {
+			   	alert('Delete Info failed: ' + infoId);
+			});
 
         // compile needed templates
         $.templates({
@@ -106,33 +109,36 @@ define(['jquery', 'infoData', 'infoStore', 'viewInfoSave', 'jsrender', 'amplify'
         });
 
         // add the form to the element
-        var $editForm = $($.render.editTemplate(infoDetail));
-        $element.empty().append($editForm);
+        // var $editForm = $($.render.editTemplate(infoDetail));
+        // $element.empty().append($editForm);
 
         // enable display and subsription for imformation processing
-        viewInfoSave.display($('#progress'));
+        //viewInfoSave.display($('#progress'));
         
-        // save event triggers save action
-        $editForm.find('#saveInfo').on('click', function (e) {
-            e.preventDefault();
+        //// save event triggers save action
+        //$editForm.find('#saveInfo').on('click', function (e) {
+        //    e.preventDefault();
 
-            // create a new object0
-            info = {};
+        //    // create a new object0
+        //    info = {};
 
-            info.Id = $('#infoId').val();
-            info.ParentId = $('#inpParentId').val()
-            info.Name = $('#inpName').val();
-            info.Key = $('#inpKey').val();
-            info.Value = $('#inpValue').val();
-            info.Url = $('#inpUrl').val();
-            info.Saved = undefined;
+        //    info.Id = $('#infoId').val();
+        //    info.ParentId = $('#inpParentId').val()
+        //    info.Name = $('#inpName').val();
+        //    info.Key = $('#inpKey').val();
+        //    info.Value = $('#inpValue').val();
+        //    info.Url = $('#inpUrl').val();
+        //    info.Saved = undefined;
 
-			// just make sure all other publishes are deleted
-            amplify.publish('info.save', info);
-        });
-
-       
+		//	// just make sure all other publishes are deleted
+        //    amplify.publish('info.save', info);
+        //});
     };
+
+	// request data for a particular day
+    var getData = function (InfoName) {
+    	return idata.infoDay(InfoName);
+    }
     return {
         display: display   
     }
