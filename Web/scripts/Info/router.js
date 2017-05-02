@@ -24,21 +24,24 @@ require(['main'], function () {
 				});
 			});
 
+
+			// load procedure for the myday view
+			var myDayDisp = function (dayName) {
+				require(['viewMyDay'], function (view) {
+					view.display($('#mainDisplay').empty(), dayName);
+				});
+			};
 			// my day Template
 			this.get('#/myday/:dayName', function (context) {
-				require(['viewMyDay'], function (view) {
-					view.display($('#mainDisplay').empty(), context.params['dayName']);
-				});
+				myDayDisp(context.params['dayName']);
 			});
+			// myDay today
+			this.get('#/myday', function () {
 
-			//// my day Template
-			//this.get('#/myday', function () {
-			//	require(['viewMyDay'], function (view) {
-			//		view.display($('#mainDisplay').empty());
-			//	});
-			//});
-
-		
+				// with a done information is the name the current date
+				var today = new Date().toJSON().slice(0, 10).replace(/-/g, '-');        // -- 
+				myDayDisp(today);
+			});
 
 
 			this.get('#/list', function () {

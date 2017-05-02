@@ -42,16 +42,27 @@ define(['jquery', 'infoData', 'infoStore', 'viewInfoSave', 'jsrender', 'amplify'
 				$element.append($disp);
 
 				// output current data
-				$disp.text(JSON.stringify(data));
-			
+				// $disp.text(JSON.stringify(data));
+
+				// enable display and subsription for imformation processing
+				viewInfoSave.display($('#progress'));
+
+				// edit template
+				renderEdit($element, data[0]);
+				
+				//
+				renderList($element, data);
 			})
 			.fail(function () {
 			   	alert('Delete Info failed: ' + infoId);
 			});
+    };
 
-        // compile needed templates
-        $.templates({
-            editTemplate: '<div>\
+
+    var renderEdit = function ($element, data) {
+    	// compile needed templates
+    	$.templates({
+    		editTemplate: '<div>\
                             <form role="form" class="form-horizontal">\
 								<div class="row">\
 									<div class="col-md-3">\
@@ -61,78 +72,78 @@ define(['jquery', 'infoData', 'infoStore', 'viewInfoSave', 'jsrender', 'amplify'
                                         <!-- Name Field = Current Date -->\
 										<div class="form-group">\
 											<label for="ParentId">Parent Id</label><br />\
-											<input type="text" value="{{:ParentId}}" class="form-control" id="inpParentId" placeholder="Current Date"></input>\
+											<input type="text" value="{{:Id}}" class="form-control" id="inpParentId" placeholder="Current Date"></input>\
 										</div>\
 									</div>\
 								</div>\
                                 <div class="row">\
 								    <div class="col-md-5">\
-										<h2>Work</h2>\
                                         <!-- Name Value = Done TextCurrent Date -->\
 										<div class="form-group">\
 										    <label for="inpValue">What\'s finished:</label>\
 										    <textarea type="text" value="{{:Value}}" class="form-control" id="inpValue" placeholder="Value"></textarea>\
 										</div>\
-                                    </div>\
-								</div>\
-								<div class="row">\
-									<div class="col-md-5">\
-										<h2>Sport</h2>\
-									</div>\
-								</div>\
-								<div class="row">\
-									<div class="col-md-5">\
-										<h2>Haushalt/Familie</h2>\
-									</div>\
-								</div>\
-								<div class="row">\
-									<div class="col-md-5">\
-										<h2>Lernen</h2>\
-									</div>\
-								</div>\
-								<div class="row">\
-								    <div class="col-md-5">\
-										<h2>Schlafen</h2>\
-									</div>\
-								</div>\
-								<div class="row">\
-									<div class="col-md-10">\
 										<div class="form-group">\
 											<button id="saveInfo" class="btn btn-default">Save</button>\
 										</div>\
+                                    </div>\
+								</div>\
+								<div class="row">\
+									<div class="col-md-8">\
+										<h2>Work -\
+										Sport -\
+										Haushalt/Familie -\
+										Lernen -\
+										Schlafen</h2>\
 									</div>\
 								</div>\
 							</form>\
                             <!-- Display info processing -->\
                             <div id="progress"></div>\
 						</div>'
-        });
+    	});
 
-        // add the form to the element
-        // var $editForm = $($.render.editTemplate(infoDetail));
-        // $element.empty().append($editForm);
+    	// add the form to the element
+    	var $editForm = $($.render.editTemplate(data));
+    	$element.empty().append($editForm);
 
-        // enable display and subsription for imformation processing
-        //viewInfoSave.display($('#progress'));
-        
-        //// save event triggers save action
-        //$editForm.find('#saveInfo').on('click', function (e) {
-        //    e.preventDefault();
 
-        //    // create a new object0
-        //    info = {};
+    	//// save event triggers save action
+    	$editForm.find('#saveInfo').on('click', function (e) {
+    		e.preventDefault();
 
-        //    info.Id = $('#infoId').val();
-        //    info.ParentId = $('#inpParentId').val()
-        //    info.Name = $('#inpName').val();
-        //    info.Key = $('#inpKey').val();
-        //    info.Value = $('#inpValue').val();
-        //    info.Url = $('#inpUrl').val();
-        //    info.Saved = undefined;
+    		// create a new object0
+    		info = {};
+    		info.ParentId = $('#inpParentId').val()
+    		info.Value = $('#inpValue').val();
 
-		//	// just make sure all other publishes are deleted
-        //    amplify.publish('info.save', info);
-        //});
+    		// just make sure all other publishes are deleted
+    		amplify.publish('info.save', info);
+    	});
+
+    };
+
+	// render list of items from a particular day
+    var renderList = function ($element, data) {
+    	// compile needed templates
+    	$.templates({
+    		itemTemplateDL: '<tr id={{:Id}} class="info" id={{:parentId}}>\
+    	                <td>{{:Name}}</td>\
+    	                <td>{{:Key}}</td>\
+    	                <td>{{:Value}}</td>\
+    	                <td>{{:Level}}</td>\
+    	                <td>{{:iDate}}</td>\
+    	            </tr>'
+    	});
+
+    	// render data to data items
+    	var infolistMarkup = '	<div class="row">\
+									<div class="col-md-8">\
+										<table class="table table-hover"><thead><th>Name</th><th>Key</th><th>Value</th><th>Level</-th></tr></thead>' + $.render.itemTemplateDL(data) + '</table>\
+									</div>\
+								</div>\
+								';
+    	 $element.append(infolistMarkup);
     };
 
 	// request data for a particular day
