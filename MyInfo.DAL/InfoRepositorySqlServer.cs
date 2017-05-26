@@ -135,7 +135,7 @@ namespace MyInfo.DAL
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public int Add(MyInfo.DTO.InfoDTO item)
+        public List<InfoDTO> Add(MyInfo.DTO.InfoDTO item)
         {
             if (item == null)
             {
@@ -157,13 +157,19 @@ namespace MyInfo.DAL
                     cmd.Parameters.Add(new SqlParameter("@Value", item.Value));
                     cmd.Parameters.Add(new SqlParameter("@Url", item.Url));
 
-                    // output parameter for stored procedure value which returns the created informaiton id
-                    SqlParameter returnParam = new SqlParameter("CreateReturnValue", SqlDbType.Int);
-                    returnParam.Direction = ParameterDirection.ReturnValue;
-                    cmd.Parameters.Add(returnParam);
+                    //// output parameter for stored procedure value which returns the created informaiton id
+                    //SqlParameter returnParam = new SqlParameter("CreateReturnValue", SqlDbType.Int);
+                    //returnParam.Direction = ParameterDirection.ReturnValue;
+                    //cmd.Parameters.Add(returnParam);
 
-                    cmd.ExecuteNonQuery();
-                    return (int)returnParam.Value;
+                    //cmd.ExecuteNonQuery();
+                    //return (int)returnParam.Value;
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    List<InfoDTO> infoList = DataReader2Object.GetList<InfoDTO>(dr);
+                    return infoList;
+
                 }
             }
         }
@@ -172,7 +178,7 @@ namespace MyInfo.DAL
        /// </summary>
        /// <param name="item"></param>
        /// <returns></returns>
-        public bool Update(InfoDTO item)
+        public List<InfoDTO> Update(InfoDTO item)
         {
             if (item == null)
             {
@@ -191,9 +197,15 @@ namespace MyInfo.DAL
                     cmd.Parameters.Add(new SqlParameter("@Value", item.Value));
                     cmd.Parameters.Add(new SqlParameter("@Url", item.Url));
                     cmd.ExecuteNonQuery();
+
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    List<InfoDTO> infoList = DataReader2Object.GetList<InfoDTO>(dr);
+                    return infoList;
                 }
             }
-            return true;
+           
         }
     }
 }

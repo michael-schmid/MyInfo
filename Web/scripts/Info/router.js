@@ -43,7 +43,6 @@ require(['main'], function () {
 				myDayDisp(today);
 			});
 
-
 			this.get('#/list', function () {
 				require(['viewInfoTable', 'infoData'], function (view, infoData) {
 					infoData.journal().done(function (data) {
@@ -73,7 +72,6 @@ require(['main'], function () {
 				});
 			});
 
-
 			// get a particular inforamtion
 			this.get('#/view/:id', function () {
 
@@ -85,7 +83,6 @@ require(['main'], function () {
 
 				});
 			});
-
 
 			this.get('/#/history', function () {
 				require(['/scripts/info/views/viewHistory.js'], function (view) {
@@ -99,6 +96,16 @@ require(['main'], function () {
 				});
 			});
 
+			// edit information
+			this.get('#/iedit/:id', function () {
+
+				var infoId = this.params["id"];
+
+				require(['viewInfoEdit'], function (editView) {
+					editView.display($('#mainDisplay').empty(), infoId);
+				});
+			});
+			
             // Change or enter a new done information 
 			this.get('#/done', function () {
 			    require(['viewInfoEditDone'], function (editView) {
@@ -118,7 +125,6 @@ require(['main'], function () {
 				});
 			});
 		});
-        
 
 		$(document).ready(
             function () {

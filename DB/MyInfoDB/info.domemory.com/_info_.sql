@@ -91,10 +91,7 @@
 				exec dbo. pInfoAdd	@parentId=@id,  @name='Kochen', @Value='20:15 - 22:00 Lets Dance mit den Kindern angeschaut, Isa Bett fertig'
 				exec dbo. pInfoAdd	@parentId=@id,  @name='Kochen', @Value='23:00 - 01:30 domemory: Hiery Sql Procedures'
 
-
-
-
-	--	add root item
+		--	add root item
 			declare @id int;
 			exec @id = pInfoAdd	@parentId=1,  @name='test', @key='key', @Value='Value', @Url='Url'
 
@@ -106,16 +103,15 @@
 				exec pInfoAdd	@parentId=@id,  @name='testChild2'
 							
 
-		select	* 
-		from	dbo.tblI
-		
-		order	by 
-				idate desc
-
+	
 		
 
-	--	Change Info
-		
+	--	Change / Update Info
+	-----------------------------------------------------------------------------
+
+		exec dbo.pInfoUpdate 
+
+
 			select	id, 
 					REPLICATE('     ', hid.GetLevel()) + Name as Text
 			from	tblI

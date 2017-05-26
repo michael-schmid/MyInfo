@@ -20,9 +20,7 @@ define(['jquery', 'amplify', 'infoData'], function ($, amplify, iData) {
 	var display = function ($element) {
 
 	    $iList = $('<ul></ul>').appendTo($element);
-
-
-
+		
 		// get the locally stored infos
 		infos = amplify.store('infoList');
 
@@ -84,9 +82,6 @@ define(['jquery', 'amplify', 'infoData'], function ($, amplify, iData) {
 	    }
 	    //// store the info locally:
 	    amplify.store('infoList', infos);
-
-	    // extend the display
-
 	};
 
     // visualize the current stored infos in the list of the progress view
@@ -109,13 +104,9 @@ define(['jquery', 'amplify', 'infoData'], function ($, amplify, iData) {
 
 	// send the info object for update
 	var save = function (info) {
-             
-
         console.log('## Save item ' + info.index + ' Saved: ' + (info.Saved || 'n/a'));
 
 		// return a promise
-		
-
         if (!!info.Id) {
             // id exist: save the already existing item
             var promise = iData.update(info.Id, info);
@@ -124,15 +115,13 @@ define(['jquery', 'amplify', 'infoData'], function ($, amplify, iData) {
             // no id create a new item.
             var promise = iData.create(info.Name, info);
         }
-		    
 
-		promise.done(function () {
+        promise.done(function () {
 		    // set the savd date
 		    info["Saved"] = (new Date().toJSON());
 		});
 
 		return promise;
-
         // needed when faking
 		//var $def = $.Deferred();
 		//$def.resolve();

@@ -11,8 +11,8 @@ namespace MyInfo.DAL
         List<InfoDTO> Infos(int InfoID);
         List<InfoDTO> InfoJournal();
         InfoDTO Get(string Name);
-        int Add(InfoDTO item);
+        List<InfoDTO> Add(InfoDTO item);
         void Delete(int Id);
-        bool Update(InfoDTO item);
+        List<InfoDTO> Update(InfoDTO item);
     }
 }

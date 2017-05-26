@@ -15,21 +15,12 @@ namespace MyWebApi
     {
         // PUT 
         [EnableCors(origins: "*", headers: "*", methods: "*")]
-        public int Post([FromBody] MyInfo.Model.Info info)
+        public Object Post([FromBody] MyInfo.Model.Info info)
         {
             // t.id = tasks.Count;
             // MyInfo.Model.Task task = new MyInfo.Model.Task();
             return  info.Save();
         }
-
-        // GET api/<controller>/5
-        // can either be name or id
-        //[EnableCors(origins: "*", headers: "*", methods: "*")]
-        //public Object Get(string id = null)
-        //{
-           
-        //}
-
 
         // GET api/info/5/journal
         // get a particular view on a object

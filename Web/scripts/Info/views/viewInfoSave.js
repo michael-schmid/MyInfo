@@ -45,6 +45,19 @@ define(['jquery', 'amplify', 'infoData'], function ($, amplify, iData) {
 		
 	};
         
+	// delete given information
+	var deleteInfo = function (id) {
+
+		$.when(iData.delete(id))
+			  .then(function (data) {
+			  	
+			  	amplify.publish("info.deleted", id);
+			  })
+			  .fail(function () {
+			  	alert('Delete Info failed: ' + id);
+			  });
+	};
+
 	// send the info object for update
 	var save = function (info) {
     
@@ -58,20 +71,17 @@ define(['jquery', 'amplify', 'infoData'], function ($, amplify, iData) {
         else {
             // no id create a new item.
 	    	var promise = iData.create(info.Name, info);
-
-	    	amplify.publish('info.created', info);
-
         }
-		promise.done(function () {
+	    promise.done(function (createdInfo) {
+
+	    	amplify.publish('info.created', createdInfo);
 		    // set the savd date
 		    info["Saved"] = (new Date().toJSON());
 		});
-
-
-
 		return promise;
 	};
 	return {
-		display: display
+		display: display		,
+		deleteInfo: deleteInfo
 	}
 })

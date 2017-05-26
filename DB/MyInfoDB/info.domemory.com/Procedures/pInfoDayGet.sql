@@ -10,6 +10,7 @@
 						exec dbo.pInfoDayGet
 					uses a particular day
 						exec dbo.pInfoDayGet @Name = '2017-04-01'
+						exec dbo.pInfoo @Id = 7;
 
 
 		select * from tblI order by iDate desc

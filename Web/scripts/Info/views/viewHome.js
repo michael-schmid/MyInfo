@@ -11,7 +11,7 @@
   
     --------------------------------------------------------------------------------------------------------------------- **/
 
-define(['jquery', 'viewInfoEdit', 'jsrender', 'amplify', 'bootstrap'  ], function ($, editView) {
+define(['jquery', 'jsrender', 'amplify', 'bootstrap'  ], function ($) {
        
     // display a list of information
 	var display = function ($element) {
@@ -54,33 +54,55 @@ define(['jquery', 'viewInfoEdit', 'jsrender', 'amplify', 'bootstrap'  ], functio
                             </div>\
                         </div>\
 					<div/>\
+				<div class="row">\
+					<div class="col-md-8">\
+						<div class="views card-columns">\
+							<div id="root" class="card card-inverse card-primary  p-5 text-center">\
+								<blockquote class="card-blockquote">\
+									<h2>Root</h2>\
+								</blockquote>\
+							</div>\
+							<div id="MyDay" class="card card-inverse card-primary  p-5 text-center">\
+								<blockquote class="card-blockquote">\
+									<h2>My Day</h2>\
+								</blockquote>\
+							</div>\
+							<div id="Performance" class="card card-inverse card-primary p-5 text-center">\
+								<blockquote class="card-blockquote">\
+									<h2>Performance</h2>\
+								</blockquote>\
+							</div>\
+							<div id="infoList" class="card card-inverse card-primary p-5 text-center">\
+								<blockquote class="card-blockquote">\
+									<h2>Hierarchy</h2>\
+								</blockquote>\
+							</div>\
+							<div id="infoDays" class="card card-inverse card-primary p-5 text-center">\
+								<blockquote class="card-blockquote">\
+									<h2>Days</h2>\
+								</blockquote>\
+							</div>\
+							<div class="card card-inverse card-primary p-5 text-center">\
+								<blockquote class="card-blockquote">\
+									<h2>Log</h2>\
+								</blockquote>\
+							</div>\
+							<div class="card card-inverse card-primary p-5 text-center">\
+								<blockquote class="card-blockquote">\
+									<h2>New</h2>\
+								</blockquote>\
+							</div>\
+						</div>\
+					</div>\
+				</div>\
+            </div>\
+        </div>\
     	        ';
-
-    	
-
-
 		$element.append(markup)
-
-		$('#displayChange').on('click', function () {
-			$('#infoEdit').toggle();
-		});
-
-		// get the dom element for displaying
-		var $infoEdit = $($element).find('#infoEdit');
-		var $infoHistory = $($element).find('#infoHistory');
-		var $infoProgress = $($element).find('#infoProgress');
-
-		// edit form
-		 editView.display($infoEdit);
-		
-		// edit form
-		require(['viewInfoList'], function (infoHistory) {
-			infoHistory.display($infoHistory); 
-		});
-
-		//// information progress
-		require(['viewInfoProgress'], function (infoProgress) {
-			infoProgress.display($infoProgress);
+		// get the apprpropate view
+		$('.views').on('click', function (e) {
+			console.log(e.target.id)
+			document.location.href = "/#/view/" + e.target.id;
 		});
 	};
 	return {

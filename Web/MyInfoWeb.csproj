@@ -152,6 +152,7 @@
     <Content Include="scripts\Info\test\hack1.js" />
     <Content Include="scripts\Info\test\infoStore-test.js" />
     <Content Include="scripts\Info\test\infoStoreWebService-test.js" />
+    <Content Include="scripts\Info\views\viewMyDays.js" />
     <Content Include="scripts\Info\views\viewHome.js" />
     <Content Include="scripts\Info\views\viewMyDay.js" />
     <Content Include="scripts\Info\views\viewInfoEditDone.js" />

@@ -43,7 +43,7 @@ namespace MyInfo.Model
         /// <summary>
         /// Persist the new task in the repository
         /// </summary>
-        public int Save()
+        public List<InfoDTO> Save()
         {
             // create new object and send to the repository
             InfoDTO td = new InfoDTO();
@@ -61,8 +61,8 @@ namespace MyInfo.Model
             { 
                 // Id exist: update existing item
                 td.Id = this.Id;
-                infoRepository.Update(td);
-                return 0;
+                return infoRepository.Update(td);
+                // return 0;
             }
 
         }

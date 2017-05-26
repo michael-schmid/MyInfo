@@ -7,9 +7,7 @@
         
         Output      Templated HTML Markup
 
-        API         require(['viewInfoEdit'], function(view) {
-                        view.display($elelement, { Id: "testId", Name: "testName", Key: "testKey", Value: "testValue" }
-                    });
+        API        
         Testing     
     --------------------------------------------------------------------------------------------------------------------- **/
 

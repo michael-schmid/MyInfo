@@ -1,17 +1,18 @@
 ﻿/*  ------------------------------------------------------------------------------------------------------------------------
         Visualize Inforamtion Data
 
-        Purpose     Visulize a plaing table with all informations
+        Purpose     Edit an information record
 
         Input       JSON Data
         
         Output      Templated HTML Markup
 
-        API         require(['viewInfoTable'], function(view) {
+        API          require(['viewInfoEdit'], function(view) {
                         view.display($elelement, { Id: "testId", Name: "testName", Key: "testKey", Value: "testValue" }
                     });
 
         URL         /#/view/InfoEdit
+					/#/edit/4505
 
         Testing     
     --------------------------------------------------------------------------------------------------------------------- **/
@@ -30,18 +31,10 @@ define(['jquery', 'infoData', 'infoStore', 'viewInfoSave', 'jsrender', 'amplify'
         $('#inpName').val(info.Name);
     };
 
-    var display = function ($element, infoDetail, parentId) {
-
-        // create a wrapper object to access the infoDetail with .infoDetail notation
-        var infoRoot = [{ info: infoDetail }];
-		        
-        // default: new root object
-        if (!infoDetail)
-            var infoDetail = { ParentId: parentId, Key: "", Value: "", Url: "", Name: "Name" };
-		
+    var display = function ($element, infoId) {
+				
         // compile needed templates
-        $.templates({
-        	editTemplate: '<div class="editForm">\
+    	var markup = '<div class="editForm">\
 								<form role="form">\
 									<div class="form-group row">\
 										<div class="col-md-2">\
@@ -53,11 +46,6 @@ define(['jquery', 'infoData', 'infoStore', 'viewInfoSave', 'jsrender', 'amplify'
 										<div class="col-md-2">\
 											<!-- Display info processing -->\
 											<div id="progress"></div>\
-										</div>\
-										<div class="col-md-4">\
-											<button id="saveInfo" class="btn btn-default">Save</button>\
-											<button id="deleteInfo" class="btn btn-default">Delete</button>\
-											<button id="newInfo" class="btn btn-default">New</button>\
 										</div>\
 									</div>\
 									<div class="form-group row">\
@@ -89,17 +77,29 @@ define(['jquery', 'infoData', 'infoStore', 'viewInfoSave', 'jsrender', 'amplify'
 											<label for="inpParentID">ParentID</label><br />\
 											<input type="text" value="{{:ParentId}}" class="form-control no-border" id="inpParentID" placeholder="ParentID">\
 										</div>\
-										<div class="col-md-8">\
+										<div class="col-md-4">\
 											<label for="inpKey" >Key</label><br />\
 											<input type="text" value="{{:Key}}" class="form-control no-border" id="inpKey" placeholder="Key">\
 										</div>\
 									</div>\
+									<div class="form-group row">\
+										<div class="col-md-4">\
+											<button id="saveInfo" class="btn btn-default">Save</button>\
+											<button id="deleteInfo" class="btn btn-default">Delete</button>\
+											<button id="newInfo" class="btn btn-default">New</button>\
+										</div>\
+										<div class="col-md-6">\
+											<div id="processMessage"><div>\
+										</div>\
+									</div>\
 								</form>\
-							</div>'
-        });
+							</div>';
+     
 
         // add the form to the element
-        var $editForm = $($.render.editTemplate(infoDetail));
+         var $editForm = $(markup);
+    	//$.render.editTemplate(infoDetail)
+
         $element.empty().append($editForm);
 
     	// enable display and subsription for imformation processing
@@ -145,10 +145,12 @@ define(['jquery', 'infoData', 'infoStore', 'viewInfoSave', 'jsrender', 'amplify'
             .then(function (data) {
 
                 console.log('infoEdit: receive info.select event: ' + infoId);
-                // alert(JSON.stringify(data));
+            	// alert(JSON.stringify(data));
+                $('#processMessage').text("Successfully retrieved information from the data service to display (" + new Date() + ")")
+
                 refreshData(data[0]);
                 
-                if ($editDisplay.length > 0) {
+                if (!!$editDisplay && $editDisplay.length > 0) {
 					// Enable Inline Edit from the Infolist
                 	// we found an edit object to display
                 	$element.show().appendTo($editDisplay);
@@ -160,6 +162,14 @@ define(['jquery', 'infoData', 'infoStore', 'viewInfoSave', 'jsrender', 'amplify'
 				////// Full Screen Modus ?????
             });
         });
+
+		// when information id is given load die info and display for editing
+        if (!!infoId === true) {
+        	setTimeout(function () {
+        		amplify.publish("info.select", infoId);
+        	}, 1000)
+        }
+
         //// create a new item
         //$editForm.find('#newInfo').on('click', function (e) {
         //    e.preventDefault();
